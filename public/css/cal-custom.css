@@ -1,0 +1,65 @@
+/* Custom styling for Cal.com embed */
+
+/* Cal.com floating button glassmorphism style */
+[data-cal-namespace="15min"] {
+    background: rgba(15, 23, 42, 0.7) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+    border: 1px solid rgba(14, 165, 233, 0.3) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 
+                0 0 40px rgba(14, 165, 233, 0.2), 
+                inset 0 0 20px rgba(14, 165, 233, 0.1) !important;
+    color: #38bdf8 !important;
+    font-weight: 600 !important;
+    border-radius: 12px !important;
+    padding: 14px 24px !important;
+    font-size: 15px !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    font-family: 'Inter', sans-serif !important;
+}
+
+[data-cal-namespace="15min"]:hover {
+    background: rgba(15, 23, 42, 0.85) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 
+                0 0 60px rgba(14, 165, 233, 0.4), 
+                inset 0 0 30px rgba(14, 165, 233, 0.2) !important;
+    transform: translateY(-2px) !important;
+    border-color: rgba(14, 165, 233, 0.5) !important;
+}
+
+/* Cal.com modal/dialog styling */
+[data-cal-namespace] iframe {
+    border-radius: 16px !important;
+    border: 1px solid rgba(14, 165, 233, 0.2) !important;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 100px rgba(14, 165, 233, 0.2) !important;
+}
+
+/* Cal.com inline embed styling */
+#my-cal-inline-15min {
+    border-radius: 16px !important;
+    overflow: hidden !important;
+}
+
+#my-cal-inline-15min iframe {
+    border: none !important;
+    border-radius: 16px !important;
+}
+
+/* Custom scrollbar for Cal.com inline */
+#my-cal-inline-15min::-webkit-scrollbar {
+    width: 10px;
+}
+
+#my-cal-inline-15min::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.5);
+    border-radius: 5px;
+}
+
+#my-cal-inline-15min::-webkit-scrollbar-thumb {
+    background: #0ea5e9;
+    border-radius: 5px;
+}
+
+#my-cal-inline-15min::-webkit-scrollbar-thumb:hover {
+    background: #0284c7;
+}

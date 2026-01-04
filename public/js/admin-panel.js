@@ -125,6 +125,7 @@ document.getElementById('service-form').addEventListener('submit', async (e) => 
         external_link: document.getElementById('service-external-link').value,
         gallery_images: galleryImages,
         technologies: technologies,
+        order_index: parseInt(document.getElementById('service-order').value) || 0,
         is_featured: document.getElementById('service-featured').checked
     };
     
@@ -231,6 +232,7 @@ async function editService(id) {
                 document.getElementById('service-external-link').value = service.external_link || '';
                 document.getElementById('service-gallery').value = Array.isArray(service.gallery_images) ? service.gallery_images.join(', ') : '';
                 document.getElementById('service-technologies').value = Array.isArray(service.technologies) ? service.technologies.join(', ') : '';
+                document.getElementById('service-order').value = service.order_index || 0;
                 document.getElementById('service-featured').checked = service.is_featured || false;
                 
                 document.getElementById('service-form-title').textContent = 'Modifier le service';
@@ -302,6 +304,7 @@ document.getElementById('project-form').addEventListener('submit', async (e) => 
         gallery_images: galleryImages,
         demo_url: document.getElementById('project-demo').value,
         technologies: technologies,
+        order_index: parseInt(document.getElementById('project-order').value) || 0,
         is_featured: document.getElementById('project-featured').checked
     };
     
@@ -410,6 +413,7 @@ async function editProject(id) {
                 document.getElementById('project-gallery').value = Array.isArray(project.gallery_images) ? project.gallery_images.join(', ') : '';
                 document.getElementById('project-demo').value = project.demo_url || '';
                 document.getElementById('project-technologies').value = Array.isArray(project.technologies) ? project.technologies.join(', ') : '';
+                document.getElementById('project-order').value = project.order_index || 0;
                 document.getElementById('project-featured').checked = project.is_featured || false;
                 
                 document.getElementById('project-form-title').textContent = 'Modifier le projet';

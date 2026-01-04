@@ -62,39 +62,50 @@ window.addEventListener('scroll', () => {
 });
 
 // Set active nav link based on current page
-const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-const navLinks = document.querySelectorAll('.nav-link');
+function setActiveNavLink() {
+    const currentPath = window.location.pathname;
+    const currentPage = currentPath.split('/').pop() || 'index.html';
+    const navLinks = document.querySelectorAll('.nav-link');
 
-navLinks.forEach(link => {
-    const href = link.getAttribute('href');
-    link.classList.remove('active');
-    
-    // Check exact match
-    if (href === currentPage) {
-        link.classList.add('active');
-    }
-    // Check if on home page
-    else if ((currentPage === '' || currentPage === 'index.html') && href === '/') {
-        link.classList.add('active');
-    }
-    // Check if on services pages
-    else if ((currentPage === 'services.html' || currentPage === 'service-detail.html') && href === 'services.html') {
-        link.classList.add('active');
-    }
-    // Check if on projects pages
-    else if ((currentPage === 'projects.html' || currentPage === 'project-detail.html') && href === 'projects.html') {
-        link.classList.add('active');
-    }
-    // Check if on about page
-    else if (currentPage === 'about.html' && href === 'about.html') {
-        link.classList.add('active');
-    }
-    // Check if on contact page (special case - button has active class)
-    else if (currentPage === 'contact.html' && href === 'contact.html') {
-        // For contact, we add active to the parent nav-cta button
-        const parentCta = link.closest('.nav-cta');
-        if (parentCta) {
+    navLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        link.classList.remove('active');
+        
+        // Home page
+        if ((currentPage === '' || currentPage === 'index.html' || currentPath === '/') && href === '/') {
             link.classList.add('active');
         }
-    }
-});
+        // Services pages
+        else if ((currentPage === 'services.html' || currentPage === 'service-detail.html') && href === 'services.html') {
+            link.classList.add('active');
+        }
+        // Projects pages
+        else if ((currentPage === 'projects.html' || currentPage === 'project-detail.html') && href === 'projects.html') {
+            link.classList.add('active');
+        }
+        // About page
+        else if (currentPage === 'about.html' && href === 'about.html') {
+            link.classList.add('active');
+        }
+        // Contact page
+        else if (currentPage === 'contact.html' && href === 'contact.html') {
+            link.classList.add('active');
+        }
+    });
+}
+
+// Call it on load
+setActiveNavLink();
+
+// Also call it when DOM is fully loaded (backup)
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setActiveNavLink);
+} else {
+    setActiveNavLink();
+}
+
+// Set current year in footer
+const yearSpan = document.getElementById('current-year');
+if (yearSpan) {
+    yearSpan.textContent = new Date().getFullYear();
+}
