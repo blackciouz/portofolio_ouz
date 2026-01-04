@@ -4,7 +4,7 @@
   "description": "Portfolio professionnel d'Ouzéfi - Architecte de systèmes d'automatisation & IA",
   "scripts": {
     "dev": "netlify dev",
-    "build": "echo 'Static site ready'",
+    "build": "npm install",
     "deploy": "netlify deploy --prod"
   },
   "dependencies": {
