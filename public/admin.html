@@ -251,11 +251,11 @@
 
         <!-- Tabs -->
         <div class="tabs">
-            <button class="tab-btn active" onclick="switchTab('services')">
+            <button class="tab-btn active" onclick="switchTab('services', event)">
                 <i data-lucide="briefcase" style="width: 16px; height: 16px; display: inline; vertical-align: middle; margin-right: 0.5rem;"></i>
                 Services
             </button>
-            <button class="tab-btn" onclick="switchTab('projects')">
+            <button class="tab-btn" onclick="switchTab('projects', event)">
                 <i data-lucide="folder" style="width: 16px; height: 16px; display: inline; vertical-align: middle; margin-right: 0.5rem;"></i>
                 Projets
             </button>
@@ -302,9 +302,23 @@
                         </div>
                     </div>
                     
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="service-image-url">URL Image principale</label>
+                            <input type="url" id="service-image-url" placeholder="https://...">
+                        </div>
+                        <div class="form-group">
+                            <label for="service-external-link">Lien externe</label>
+                            <input type="url" id="service-external-link" placeholder="https://...">
+                        </div>
+                    </div>
+                    
                     <div class="form-group">
-                        <label for="service-external-link">Lien externe</label>
-                        <input type="url" id="service-external-link" placeholder="https://...">
+                        <label for="service-gallery">Images galerie (URLs séparées par virgule)</label>
+                        <input type="text" id="service-gallery" placeholder="https://image1.jpg, https://image2.jpg, ...">
+                        <small style="color: var(--text-muted); font-size: 0.75rem; display: block; margin-top: 0.25rem;">
+                            Séparez chaque URL par une virgule. Maximum recommandé : 6 images
+                        </small>
                     </div>
                     
                     <div class="form-group">
@@ -373,13 +387,21 @@
                     
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="project-image">URL Image</label>
+                            <label for="project-image">URL Image principale</label>
                             <input type="url" id="project-image" placeholder="https://...">
                         </div>
                         <div class="form-group">
                             <label for="project-demo">URL Démo</label>
                             <input type="url" id="project-demo" placeholder="https://...">
                         </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="project-gallery">Images galerie (URLs séparées par virgule)</label>
+                        <input type="text" id="project-gallery" placeholder="https://image1.jpg, https://image2.jpg, ...">
+                        <small style="color: var(--text-muted); font-size: 0.75rem; display: block; margin-top: 0.25rem;">
+                            Séparez chaque URL par une virgule. Ces images seront affichées dans la galerie du projet
+                        </small>
                     </div>
                     
                     <div class="form-group">

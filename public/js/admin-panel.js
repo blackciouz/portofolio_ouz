@@ -77,11 +77,18 @@ function logout() {
 }
 
 // Tab switching
-function switchTab(tab) {
+function switchTab(tab, event) {
     document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
     document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
     
-    event.target.classList.add('active');
+    if (event && event.target) {
+        event.target.classList.add('active');
+    } else {
+        // If no event (called programmatically), find the button manually
+        const btn = document.querySelector(`[onclick*="${tab}"]`);
+        if (btn) btn.classList.add('active');
+    }
+    
     document.getElementById(tab + '-tab').classList.add('active');
     
     if (typeof lucide !== 'undefined') {
@@ -101,6 +108,11 @@ document.getElementById('service-form').addEventListener('submit', async (e) => 
         .map(t => t.trim())
         .filter(t => t);
     
+    const galleryImages = document.getElementById('service-gallery').value
+        .split(',')
+        .map(url => url.trim())
+        .filter(url => url);
+    
     const data = {
         adminPassword: adminPassword,
         title: document.getElementById('service-title').value,
@@ -109,7 +121,9 @@ document.getElementById('service-form').addEventListener('submit', async (e) => 
         full_description: document.getElementById('service-full-desc').value,
         icon: document.getElementById('service-icon').value,
         price_starting_from: parseFloat(document.getElementById('service-price').value) || null,
+        image_url: document.getElementById('service-image-url').value,
         external_link: document.getElementById('service-external-link').value,
+        gallery_images: galleryImages,
         technologies: technologies,
         is_featured: document.getElementById('service-featured').checked
     };
@@ -213,7 +227,9 @@ async function editService(id) {
                 document.getElementById('service-full-desc').value = service.full_description || '';
                 document.getElementById('service-icon').value = service.icon || '';
                 document.getElementById('service-price').value = service.price_starting_from || '';
+                document.getElementById('service-image-url').value = service.image_url || '';
                 document.getElementById('service-external-link').value = service.external_link || '';
+                document.getElementById('service-gallery').value = Array.isArray(service.gallery_images) ? service.gallery_images.join(', ') : '';
                 document.getElementById('service-technologies').value = Array.isArray(service.technologies) ? service.technologies.join(', ') : '';
                 document.getElementById('service-featured').checked = service.is_featured || false;
                 
@@ -271,6 +287,11 @@ document.getElementById('project-form').addEventListener('submit', async (e) => 
         .map(t => t.trim())
         .filter(t => t);
     
+    const galleryImages = document.getElementById('project-gallery').value
+        .split(',')
+        .map(url => url.trim())
+        .filter(url => url);
+    
     const data = {
         adminPassword: adminPassword,
         title: document.getElementById('project-title').value,
@@ -278,6 +299,7 @@ document.getElementById('project-form').addEventListener('submit', async (e) => 
         short_description: document.getElementById('project-short-desc').value,
         full_description: document.getElementById('project-full-desc').value,
         image_url: document.getElementById('project-image').value,
+        gallery_images: galleryImages,
         demo_url: document.getElementById('project-demo').value,
         technologies: technologies,
         is_featured: document.getElementById('project-featured').checked
@@ -385,6 +407,7 @@ async function editProject(id) {
                 document.getElementById('project-short-desc').value = project.short_description || '';
                 document.getElementById('project-full-desc').value = project.full_description || '';
                 document.getElementById('project-image').value = project.image_url || '';
+                document.getElementById('project-gallery').value = Array.isArray(project.gallery_images) ? project.gallery_images.join(', ') : '';
                 document.getElementById('project-demo').value = project.demo_url || '';
                 document.getElementById('project-technologies').value = Array.isArray(project.technologies) ? project.technologies.join(', ') : '';
                 document.getElementById('project-featured').checked = project.is_featured || false;
@@ -392,9 +415,13 @@ async function editProject(id) {
                 document.getElementById('project-form-title').textContent = 'Modifier le projet';
                 document.getElementById('project-submit-text').textContent = 'Mettre à jour';
                 
-                // Switch to projects tab if not already there
-                switchTab('projects');
-                document.querySelector('#projects-tab .card').scrollIntoView({ behavior: 'smooth' });
+                // Switch to projects tab WITHOUT event parameter
+                switchTab('projects', null);
+                
+                // Wait a bit then scroll
+                setTimeout(() => {
+                    document.querySelector('#projects-tab .card').scrollIntoView({ behavior: 'smooth' });
+                }, 100);
             }
         }
     } catch (error) {

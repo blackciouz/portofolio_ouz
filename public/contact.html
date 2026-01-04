@@ -105,6 +105,25 @@
                         <div class="card">
                             <div style="display: flex; align-items: start; gap: 1rem;">
                                 <div style="width: 48px; height: 48px; flex-shrink: 0; background: rgba(139, 92, 246, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                                    <i data-lucide="briefcase" style="color: var(--purple-500); width: 24px; height: 24px;"></i>
+                                </div>
+                                <div>
+                                    <h4 style="margin-bottom: 0.5rem;">Plateformes Freelance</h4>
+                                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                                        <a href="https://comeup.com/fr/@automaciouz" target="_blank" style="color: var(--text-tertiary); text-decoration: none; transition: color 0.2s; font-size: 0.875rem;">
+                                            ComeUp: @automaciouz
+                                        </a>
+                                        <a href="https://upwork.com/freelancers/~01118d44db25713a68" target="_blank" style="color: var(--text-tertiary); text-decoration: none; transition: color 0.2s; font-size: 0.875rem;">
+                                            Upwork: Ouzéfi
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div style="display: flex; align-items: start; gap: 1rem;">
+                                <div style="width: 48px; height: 48px; flex-shrink: 0; background: rgba(139, 92, 246, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
                                     <i data-lucide="map-pin" style="color: var(--purple-500); width: 24px; height: 24px;"></i>
                                 </div>
                                 <div>
@@ -126,11 +145,21 @@
                     </div>
                 </div>
                 
-                <!-- Contact Form -->
+                <!-- Cal.com Booking -->
                 <div>
                     <div class="card" style="padding: 2.5rem;">
-                        <h3 style="margin-bottom: 1.5rem;">Envoyer un message</h3>
+                        <h3 style="margin-bottom: 1.5rem;">Réserver un créneau</h3>
+                        <p style="color: var(--text-tertiary); margin-bottom: 2rem;">
+                            Choisissez un créneau de 15 minutes pour discuter de votre projet.
+                        </p>
                         
+                        <!-- Cal inline embed code begins -->
+                        <div style="width:100%;height:600px;overflow:auto" id="my-cal-inline-15min"></div>
+                        <!-- Cal inline embed code ends -->
+                    </div>
+                    
+                    <!-- Old form hidden for backup -->
+                    <div style="display: none;">
                         <form id="contact-form">
                             <div style="margin-bottom: 1.5rem;">
                                 <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.875rem; color: var(--text-primary);">
@@ -162,11 +191,11 @@
                                         style="width: 100%; padding: 0.875rem 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-primary); border-radius: 0.5rem; color: var(--text-primary); font-family: var(--font-body); font-size: 0.875rem; transition: all 0.2s; cursor: pointer;"
                                         onfocus="this.style.borderColor='var(--brand-400)'; this.style.background='rgba(255, 255, 255, 0.08)'"
                                         onblur="this.style.borderColor='var(--border-primary)'; this.style.background='rgba(255, 255, 255, 0.05)'">
-                                    <option value="general">Question générale</option>
-                                    <option value="devis">Demande de devis</option>
-                                    <option value="service">Question sur un service</option>
-                                    <option value="project">Nouveau projet</option>
-                                    <option value="autre">Autre</option>
+                                    <option value="general" style="background: var(--bg-secondary); color: var(--text-primary);">Question générale</option>
+                                    <option value="devis" style="background: var(--bg-secondary); color: var(--text-primary);">Demande de devis</option>
+                                    <option value="service" style="background: var(--bg-secondary); color: var(--text-primary);">Question sur un service</option>
+                                    <option value="project" style="background: var(--bg-secondary); color: var(--text-primary);">Nouveau projet</option>
+                                    <option value="autre" style="background: var(--bg-secondary); color: var(--text-primary);">Autre</option>
                                 </select>
                             </div>
                             
@@ -225,11 +254,37 @@
         </div>
     </footer>
 
+    <!-- Cal inline embed code begins -->
+    <script type="text/javascript">
+      (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+    Cal("init", "15min", {origin:"https://app.cal.com"});
+
+      Cal.ns["15min"]("inline", {
+        elementOrSelector:"#my-cal-inline-15min",
+        config: {"layout":"month_view"},
+        calLink: "ouzefi-automaciouz-yugozj/15min",
+      });
+
+      Cal.ns["15min"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+    </script>
+    <!-- Cal inline embed code ends -->
+    
+    <!-- Cal floating-popup embed code begins -->
+    <script type="text/javascript">
+      (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+    Cal("init", "15min", {origin:"https://app.cal.com"});
+
+      Cal.ns["15min"]("floatingButton", {"calLink":"ouzefi-automaciouz-yugozj/15min","config":{"layout":"month_view"}}); 
+      Cal.ns["15min"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+    </script>
+    <!-- Cal floating-popup embed code ends -->
+
     <script src="js/nav.js"></script>
     <script>
         lucide.createIcons();
         
-        // Contact form handler
+        // Old contact form handler (kept for backup)
+        if (document.getElementById('contact-form')) {
         document.getElementById('contact-form').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -259,6 +314,7 @@
                 this.reset();
             }, 1000);
         });
+        }
     </script>
 
 </body>
