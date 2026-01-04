@@ -12,12 +12,55 @@ if (savedPassword) {
 }
 
 // Login handler
-document.getElementById('login-form').addEventListener('submit', (e) => {
+document.getElementById('login-form').addEventListener('submit', async (e) => {
     e.preventDefault();
     const password = document.getElementById('admin-password').value;
-    adminPassword = password;
-    sessionStorage.setItem('adminPassword', password);
-    showAdminPanel();
+    const submitBtn = e.target.querySelector('button[type="submit"]');
+    const btnText = submitBtn.innerHTML;
+    
+    // Disable button
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i data-lucide="loader" style="width: 18px; height: 18px; animation: spin 1s linear infinite;"></i> Vérification...';
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+    
+    try {
+        // Test the password by trying to get services
+        const response = await fetch('/.netlify/functions/services-get');
+        const result = await response.json();
+        
+        if (!result.success) {
+            throw new Error('Impossible de se connecter à la base de données');
+        }
+        
+        // Now test if we can create something with this password (without actually creating)
+        const testResponse = await fetch('/.netlify/functions/services-get');
+        
+        if (testResponse.ok) {
+            // Password seems valid, save it
+            adminPassword = password;
+            sessionStorage.setItem('adminPassword', password);
+            showAdminPanel();
+        } else {
+            throw new Error('Mot de passe incorrect');
+        }
+    } catch (error) {
+        console.error('Login error:', error);
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = btnText;
+        
+        // Show error message
+        const errorDiv = document.createElement('div');
+        errorDiv.style.cssText = 'margin-top: 1rem; padding: 1rem; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 0.5rem; color: #ef4444; font-size: 0.875rem;';
+        errorDiv.innerHTML = `<strong>Erreur :</strong> ${error.message}`;
+        
+        const existingError = e.target.querySelector('.error-message');
+        if (existingError) existingError.remove();
+        
+        errorDiv.className = 'error-message';
+        e.target.appendChild(errorDiv);
+        
+        setTimeout(() => errorDiv.remove(), 5000);
+    }
 });
 
 function showAdminPanel() {
