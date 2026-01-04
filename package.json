@@ -1,0 +1,16 @@
+{
+  "name": "ouzefi-portfolio",
+  "version": "1.0.0",
+  "description": "Portfolio professionnel d'Ouzéfi - Architecte de systèmes d'automatisation & IA",
+  "scripts": {
+    "dev": "netlify dev",
+    "build": "echo 'Static site ready'",
+    "deploy": "netlify deploy --prod"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0"
+  },
+  "devDependencies": {
+    "netlify-cli": "^17.0.0"
+  }
+}

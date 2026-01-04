@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Ouzefi Portfolio</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .admin-header {
+            margin-bottom: 3rem;
+            padding-top: 5rem;
+        }
+        
+        .project-form {
+            background: rgba(17, 24, 39, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-subtle);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            color: var(--text-white);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: rgba(3, 7, 18, 0.8);
+            border: 1px solid var(--border-subtle);
+            border-radius: 0.5rem;
+            color: var(--text-white);
+            font-family: var(--font-body);
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--brand-400);
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-gray);
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            cursor: pointer;
+        }
+        
+        .projects-list {
+            display: grid;
+            gap: 1.5rem;
+        }
+        
+        .project-item {
+            background: rgba(17, 24, 39, 0.4);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-subtle);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            gap: 1rem;
+        }
+        
+        .project-info {
+            flex: 1;
+        }
+        
+        .project-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .btn-small {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+        }
+        
+        .btn-danger {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+        
+        .btn-danger:hover {
+            background: rgba(239, 68, 68, 0.2);
+        }
+        
+        .alert {
+            padding: 1rem 1.5rem;
+            border-radius: 0.75rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .alert-success {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: var(--neon-emerald);
+        }
+        
+        .alert-error {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #ef4444;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .login-form {
+            max-width: 400px;
+            margin: 10rem auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Section -->
+    <div id="login-section" class="admin-container">
+        <div class="login-form glass-card" style="padding: 3rem;">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <div class="icon-box" style="display: inline-flex; margin-bottom: 1rem;">
+                    <i data-lucide="lock" style="color: var(--brand-400); width: 32px; height: 32px;"></i>
+                </div>
+                <h2>Admin Panel</h2>
+                <p style="color: var(--text-gray); margin-top: 0.5rem;">Connectez-vous pour gérer vos projets</p>
+            </div>
+            
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="admin-password">Mot de passe</label>
+                    <input type="password" id="admin-password" placeholder="Entrez le mot de passe admin" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                    <i data-lucide="log-in"></i>
+                    Se connecter
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Panel -->
+    <div id="admin-panel" class="admin-container hidden">
+        <div class="admin-header">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h1>Admin Panel</h1>
+                    <p style="color: var(--text-gray); margin-top: 0.5rem;">Gérez vos projets et réalisations</p>
+                </div>
+                <div style="display: flex; gap: 1rem;">
+                    <a href="/" class="btn btn-secondary">
+                        <i data-lucide="home"></i>
+                        Voir le site
+                    </a>
+                    <button onclick="logout()" class="btn btn-secondary">
+                        <i data-lucide="log-out"></i>
+                        Déconnexion
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Alert Messages -->
+        <div id="alert-container"></div>
+
+        <!-- Add/Edit Project Form -->
+        <div class="project-form">
+            <h3 style="margin-bottom: 1.5rem;">
+                <span id="form-title">Ajouter un nouveau projet</span>
+            </h3>
+            
+            <form id="project-form">
+                <input type="hidden" id="project-id">
+                
+                <div class="form-group">
+                    <label for="title">Titre du projet *</label>
+                    <input type="text" id="title" placeholder="Ex: MultiGPT1" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" placeholder="Description détaillée du projet"></textarea>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label for="category">Catégorie</label>
+                        <select id="category">
+                            <option value="">Sélectionner une catégorie</option>
+                            <option value="IA & SaaS">IA & SaaS</option>
+                            <option value="Automatisation">Automatisation</option>
+                            <option value="Marketing Digital">Marketing Digital</option>
+                            <option value="Scraping & Data">Scraping & Data</option>
+                            <option value="Dashboard & UX">Dashboard & UX</option>
+                            <option value="E-commerce">E-commerce</option>
+                            <option value="Autre">Autre</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="technologies">Technologies (séparées par virgules)</label>
+                        <input type="text" id="technologies" placeholder="Ex: AI, API, Automation">
+                    </div>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label for="image_url">URL de l'image</label>
+                        <input type="url" id="image_url" placeholder="https://example.com/image.jpg">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="demo_url">URL de démonstration</label>
+                        <input type="url" id="demo_url" placeholder="https://example.com">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="featured">
+                        <label for="featured" style="margin: 0;">Projet phare (mettre en avant)</label>
+                    </div>
+                </div>
+                
+                <div style="display: flex; gap: 1rem;">
+                    <button type="submit" class="btn btn-primary">
+                        <i data-lucide="save"></i>
+                        <span id="submit-text">Ajouter le projet</span>
+                    </button>
+                    <button type="button" onclick="resetForm()" class="btn btn-secondary">
+                        <i data-lucide="x"></i>
+                        Annuler
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Projects List -->
+        <div>
+            <h3 style="margin-bottom: 1.5rem;">Projets existants</h3>
+            <div id="projects-list" class="projects-list">
+                <div class="glass-card" style="padding: 2rem; text-align: center;">
+                    <i data-lucide="loader" style="color: var(--brand-400); width: 32px; height: 32px;"></i>
+                    <p style="margin-top: 1rem; color: var(--text-gray);">Chargement...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/admin.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
