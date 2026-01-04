@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Services d'automatisation, IA, SaaS et développement proposés par Ouzéfi">
+    <title>Services - Ouzéfi</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">
+                <div class="nav-logo-icon">O</div>
+                <span>Ouzéfi</span>
+            </a>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="/" class="nav-link">Accueil</a></li>
+                <li><a href="services.html" class="nav-link active">Services</a></li>
+                <li><a href="projects.html" class="nav-link">Projets</a></li>
+                <li><a href="about.html" class="nav-link">À propos</a></li>
+                <li class="nav-cta">
+                    <a href="contact.html" class="btn btn-primary">
+                        <i data-lucide="mail" style="width: 16px; height: 16px;"></i>
+                        Contact
+                    </a>
+                </li>
+            </ul>
+            
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="section" style="padding-top: 140px; padding-bottom: 2rem;">
+        <div class="container">
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <div style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(139, 92, 246, 0.1); border: 1px solid rgba(139, 92, 246, 0.2); border-radius: 999px; margin-bottom: 1.5rem; font-size: 0.875rem; color: var(--purple-500); font-weight: 600;">
+                    <i data-lucide="briefcase" style="width: 16px; height: 16px;"></i>
+                    <span>Services</span>
+                </div>
+                
+                <h1 style="margin-bottom: 1.5rem;">
+                    Solutions d'<span class="text-gradient">automatisation</span><br>
+                    pour votre business
+                </h1>
+                
+                <p style="font-size: 1.125rem; color: var(--text-tertiary);">
+                    Des systèmes complets qui fonctionnent 24/7 : IA, automatisation, SaaS, scraping et plus encore.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section class="section">
+        <div class="container">
+            <div id="services-container">
+                <!-- Loading state -->
+                <div class="grid grid-cols-1">
+                    <div class="card" style="text-align: center; padding: 4rem 2rem;">
+                        <div style="width: 64px; height: 64px; margin: 0 auto 1rem; background: rgba(14, 165, 233, 0.1); border-radius: 16px; display: flex; align-items: center; justify-content: center;">
+                            <i data-lucide="loader" style="color: var(--brand-400); width: 32px; height: 32px; animation: spin 1s linear infinite;"></i>
+                        </div>
+                        <p style="color: var(--text-muted); font-size: 1.125rem;">Chargement des services...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section">
+        <div class="container">
+            <div class="card" style="text-align: center; padding: 3rem 2rem; background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(139, 92, 246, 0.1)); border: 1px solid rgba(14, 165, 233, 0.2);">
+                <h2 style="margin-bottom: 1rem; font-size: 2rem;">Besoin d'un service personnalisé ?</h2>
+                <p style="color: var(--text-tertiary); max-width: 600px; margin: 0 auto 2rem;">
+                    Je peux créer des solutions sur mesure adaptées à vos besoins spécifiques.
+                </p>
+                <a href="contact.html" class="btn btn-primary btn-lg">
+                    <i data-lucide="message-circle" style="width: 20px; height: 20px;"></i>
+                    Discutons de votre projet
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="border-top: 1px solid var(--border-primary); padding: 3rem 0; margin-top: 4rem;">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem;">
+                <div>
+                    <div class="nav-logo" style="margin-bottom: 0.5rem;">
+                        <div class="nav-logo-icon">O</div>
+                        <span>Ouzéfi</span>
+                    </div>
+                    <p style="color: var(--text-muted); font-size: 0.875rem; margin: 0;">Architecte de Systèmes d'Automatisation & IA</p>
+                </div>
+                <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
+                    <a href="/" style="color: var(--text-muted); font-size: 0.875rem;">Accueil</a>
+                    <a href="services.html" style="color: var(--text-muted); font-size: 0.875rem;">Services</a>
+                    <a href="projects.html" style="color: var(--text-muted); font-size: 0.875rem;">Projets</a>
+                    <a href="about.html" style="color: var(--text-muted); font-size: 0.875rem;">À propos</a>
+                    <a href="contact.html" style="color: var(--text-muted); font-size: 0.875rem;">Contact</a>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border-secondary);">
+                <p style="color: var(--text-muted); font-size: 0.875rem; margin: 0;">
+                    © 2024 Ouzéfi. Tous droits réservés.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <style>
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+
+    <script src="js/nav.js"></script>
+    <script src="js/services.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+
+</body>
+</html>

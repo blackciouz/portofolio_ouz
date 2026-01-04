@@ -23,7 +23,7 @@ exports.handler = async (event, context) => {
   try {
     const body = JSON.parse(event.body);
     
-    // Simple password check for admin access
+    // Check admin password
     if (body.adminPassword !== process.env.ADMIN_PASSWORD) {
       return {
         statusCode: 401,
@@ -37,22 +37,34 @@ exports.handler = async (event, context) => {
       process.env.SUPABASE_SERVICE_ROLE_KEY
     );
 
+    // Generate slug from title if not provided
+    const slug = body.slug || body.title.toLowerCase()
+      .replace(/[àáâãäå]/g, 'a')
+      .replace(/[èéêë]/g, 'e')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)/g, '');
+
     const { data, error } = await supabase
-      .from('projects')
+      .from('services')
       .insert([{
         title: body.title,
-        description: body.description,
+        slug: slug,
+        short_description: body.short_description,
+        full_description: body.full_description,
+        icon: body.icon,
         category: body.category,
-        technologies: body.technologies,
+        price_starting_from: body.price_starting_from,
+        external_link: body.external_link,
+        features: body.features || [],
+        technologies: body.technologies || [],
         image_url: body.image_url,
-        demo_url: body.demo_url,
-        featured: body.featured || false
+        gallery_images: body.gallery_images || [],
+        is_featured: body.is_featured || false,
+        order_index: body.order_index || 0
       }])
       .select();
 
-    if (error) {
-      throw error;
-    }
+    if (error) throw error;
 
     return {
       statusCode: 201,
@@ -64,7 +76,7 @@ exports.handler = async (event, context) => {
     };
 
   } catch (error) {
-    console.error('Error creating project:', error);
+    console.error('Error creating service:', error);
     return {
       statusCode: 500,
       headers,

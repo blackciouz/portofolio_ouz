@@ -3,551 +3,223 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Ouzéfi - Architecte de systèmes d'automatisation, IA & SaaS. Automatisation à 100% de la prospection, marketing et opérations digitales.">
-    <meta name="keywords" content="automatisation, IA, SaaS, chatbot, MultiGPT1, prospection, marketing automation">
-    <meta name="author" content="Ouzéfi">
+    <meta name="description" content="Ouzéfi - Architecte de systèmes d'automatisation, IA & SaaS. Solutions professionnelles pour automatiser votre business.">
+    <meta name="keywords" content="automatisation, IA, SaaS, développement, Ouzéfi">
     <title>Ouzéfi - Architecte de Systèmes d'Automatisation & IA</title>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Styles -->
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/main.css">
     
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
+
     <!-- Navigation -->
-    <nav>
-        <div class="container">
-            <a href="#" class="logo">Ouzéfi<span class="gradient-text">.</span></a>
-            <ul class="nav-links">
-                <li><a href="#about">À propos</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#projects">Réalisations</a></li>
-                <li><a href="#contact">Contact</a></li>
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">
+                <div class="nav-logo-icon">O</div>
+                <span>Ouzéfi</span>
+            </a>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="/" class="nav-link active">Accueil</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="projects.html" class="nav-link">Projets</a></li>
+                <li><a href="about.html" class="nav-link">À propos</a></li>
+                <li class="nav-cta">
+                    <a href="contact.html" class="btn btn-primary">
+                        <i data-lucide="mail" style="width: 16px; height: 16px;"></i>
+                        Contact
+                    </a>
+                </li>
             </ul>
+            
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
 
-    <!-- Background Orbs -->
-    <div class="orb orb-blue" style="width: 600px; height: 600px; top: -200px; left: -100px;"></div>
-    <div class="orb orb-purple" style="width: 500px; height: 500px; bottom: -150px; right: -100px;"></div>
-
     <!-- Hero Section -->
-    <section class="hero" id="hero">
+    <section class="section section-lg" style="padding-top: 140px;">
         <div class="container">
-            <div class="hero-content animate-fade-in">
-                <div class="hero-tag">🚀 Architecte de Systèmes d'Automatisation</div>
-                <h1>J'automatise à <span class="gradient-text">100%</span> votre prospection, marketing & opérations digitales</h1>
-                <p>Systèmes IA & SaaS sur mesure. Automatisation complète. Dashboards intuitifs. Résultats concrets.</p>
-                <div class="hero-cta">
-                    <a href="#contact" class="btn btn-primary">
-                        <i data-lucide="mail"></i>
-                        Discuter de votre projet
-                    </a>
-                    <a href="#services" class="btn btn-secondary">
-                        <i data-lucide="arrow-down"></i>
-                        Découvrir mes services
-                    </a>
-                </div>
-                
-                <!-- Stats -->
-                <div class="stats-grid">
-                    <div class="stat-card glass-card">
-                        <div class="stat-number">100%</div>
-                        <div class="stat-label">Automatisation</div>
+            <div class="grid grid-cols-1" style="gap: 4rem; max-width: 900px; margin: 0 auto; text-align: center;">
+                <div class="animate-fade-in-up">
+                    <!-- Badge -->
+                    <div style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(14, 165, 233, 0.1); border: 1px solid rgba(14, 165, 233, 0.2); border-radius: 999px; margin-bottom: 2rem; font-size: 0.875rem; color: var(--brand-400); font-weight: 600;">
+                        <i data-lucide="zap" style="width: 16px; height: 16px;"></i>
+                        <span>Architecte de Systèmes d'Automatisation</span>
                     </div>
-                    <div class="stat-card glass-card">
-                        <div class="stat-number">10+</div>
-                        <div class="stat-label">Canaux Intégrés</div>
+                    
+                    <!-- Title -->
+                    <h1 style="margin-bottom: 1.5rem; line-height: 1.1;">
+                        J'automatise à <span class="text-gradient">100%</span><br>
+                        votre business digital
+                    </h1>
+                    
+                    <!-- Description -->
+                    <p style="font-size: 1.25rem; color: var(--text-tertiary); max-width: 700px; margin: 0 auto 2.5rem;">
+                        De l'IA aux SaaS, de la prospection au scraping : des systèmes complets qui fonctionnent 24/7 pendant que vous vous concentrez sur l'essentiel.
+                    </p>
+                    
+                    <!-- CTA Buttons -->
+                    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                        <a href="services.html" class="btn btn-primary btn-lg">
+                            <i data-lucide="rocket" style="width: 20px; height: 20px;"></i>
+                            Découvrir mes services
+                        </a>
+                        <a href="projects.html" class="btn btn-secondary btn-lg">
+                            <i data-lucide="folder" style="width: 20px; height: 20px;"></i>
+                            Voir mes projets
+                        </a>
                     </div>
-                    <div class="stat-card glass-card">
-                        <div class="stat-number">24/7</div>
-                        <div class="stat-label">Opérationnel</div>
+                    
+                    <!-- Stats -->
+                    <div class="grid grid-cols-3" style="margin-top: 4rem; gap: 2rem;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 2.5rem; font-weight: 700; color: var(--brand-400); font-family: var(--font-display); margin-bottom: 0.5rem;">100%</div>
+                            <div style="font-size: 0.875rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">Automatisation</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 2.5rem; font-weight: 700; color: var(--emerald-500); font-family: var(--font-display); margin-bottom: 0.5rem;">24/7</div>
+                            <div style="font-size: 0.875rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">Opérationnel</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 2.5rem; font-weight: 700; color: var(--purple-500); font-family: var(--font-display); margin-bottom: 0.5rem;">10+</div>
+                            <div style="font-size: 0.875rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">Canaux Intégrés</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about">
+    <!-- Services Preview -->
+    <section class="section">
         <div class="container">
-            <div class="section-header">
-                <div class="section-tag">👋 Profil</div>
-                <h2>Ouzéfi - Spécialiste en Automatisation Avancée</h2>
-                <p>21 ans | Français · Anglais | Architecte de systèmes automatisés & SaaS</p>
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <div style="display: inline-block; padding: 0.5rem 1rem; background: rgba(139, 92, 246, 0.1); border: 1px solid rgba(139, 92, 246, 0.2); border-radius: 999px; margin-bottom: 1rem; font-size: 0.75rem; color: var(--purple-500); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">
+                    Services
+                </div>
+                <h2 style="margin-bottom: 1rem;">Ce que je peux faire pour vous</h2>
+                <p style="color: var(--text-tertiary); max-width: 600px; margin: 0 auto;">
+                    Des solutions complètes pour automatiser votre business de A à Z
+                </p>
             </div>
             
-            <div class="glass-card" style="padding: 3rem;">
-                <p style="font-size: 1.25rem; color: var(--text-white); margin-bottom: 2rem;">
-                    Je conçois et déploie des <strong class="gradient-text">systèmes automatisés complets</strong>, 
-                    intégrant IA, SaaS, scraping, diffusion multi-canaux, dashboards et maintenance, 
-                    avec une abstraction totale de la complexité pour le client final.
-                </p>
-                
-                <div class="grid-3" style="margin-top: 2rem;">
-                    <div>
-                        <h4 style="color: var(--brand-400); margin-bottom: 1rem;">🧠 Vision</h4>
-                        <p>Automatisation réellement end-to-end, pas outil par outil</p>
+            <div class="grid grid-cols-3" id="services-preview">
+                <!-- Services will be loaded here -->
+                <div class="card" style="text-align: center;">
+                    <div style="width: 48px; height: 48px; margin: 0 auto 1rem; background: rgba(14, 165, 233, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                        <i data-lucide="loader" style="color: var(--brand-400); width: 24px; height: 24px;"></i>
                     </div>
-                    <div>
-                        <h4 style="color: var(--brand-400); margin-bottom: 1rem;">⚡ Approche</h4>
-                        <p>Architecture système pensée pour la scalabilité</p>
-                    </div>
-                    <div>
-                        <h4 style="color: var(--brand-400); margin-bottom: 1rem;">🎯 Résultat</h4>
-                        <p>Le client pilote sans voir les coulisses techniques</p>
-                    </div>
+                    <p style="color: var(--text-muted);">Chargement...</p>
                 </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="services.html" class="btn btn-secondary">
+                    Voir tous les services
+                    <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- MultiGPT1 & SaaS Section -->
-    <section id="multigpt">
+    <!-- Projects Preview -->
+    <section class="section" style="background: linear-gradient(to bottom, transparent, rgba(14, 165, 233, 0.03), transparent);">
         <div class="container">
-            <div class="section-header">
-                <div class="section-tag">🤖 IA & SaaS</div>
-                <h2>MultiGPT1 & Solutions SaaS</h2>
-                <p>Développement de produits IA innovants et SaaS sur mesure</p>
-            </div>
-
-            <div class="grid-2">
-                <!-- MultiGPT1 -->
-                <div class="glass-card feature-card">
-                    <div class="feature-icon">
-                        <div class="icon-box">
-                            <i data-lucide="brain" style="color: var(--brand-400); width: 32px; height: 32px;"></i>
-                        </div>
-                    </div>
-                    <h3>MultiGPT1</h3>
-                    <p>Chatbot IA multimodal révolutionnaire</p>
-                    <ul>
-                        <li>Agrégation de plusieurs modèles IA (raisonnement, rapidité, coût)</li>
-                        <li>Déployé sur Messenger (m.me/MultiGPT1)</li>
-                        <li>Optimisé pour l'Afrique : accessible sans forfait internet classique</li>
-                        <li>Consommation minimale de données</li>
-                        <li>Architecture scalable avec intégration multi-canaux</li>
-                        <li>Texte, images, logique conversationnelle avancée</li>
-                    </ul>
-                    <div class="tech-stack">
-                        <span class="tech-tag">AI Multi-Model</span>
-                        <span class="tech-tag">Messenger API</span>
-                        <span class="tech-tag">Low-Data</span>
-                        <span class="tech-tag">Scalable</span>
-                    </div>
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <div style="display: inline-block; padding: 0.5rem 1rem; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 999px; margin-bottom: 1rem; font-size: 0.75rem; color: var(--emerald-500); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">
+                    Portfolio
                 </div>
-
-                <!-- Autres SaaS -->
-                <div class="glass-card feature-card">
-                    <div class="feature-icon">
-                        <div class="icon-box">
-                            <i data-lucide="rocket" style="color: var(--neon-emerald); width: 32px; height: 32px;"></i>
-                        </div>
-                    </div>
-                    <h3>SaaS Sur Mesure</h3>
-                    <p>Conception et développement de solutions personnalisées</p>
-                    <ul>
-                        <li>Plusieurs SaaS personnels développés</li>
-                        <li>Création de SaaS pour entreprises</li>
-                        <li>Automatisation marketing & CRM</li>
-                        <li>Support client automatisé</li>
-                        <li>Outils internes & productivité</li>
-                        <li>Data & monitoring en temps réel</li>
-                    </ul>
-                    <div class="tech-stack">
-                        <span class="tech-tag">SaaS Architecture</span>
-                        <span class="tech-tag">API Design</span>
-                        <span class="tech-tag">Cloud Native</span>
-                        <span class="tech-tag">Monétisable</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Prospection & Sales Section -->
-    <section id="prospection" style="background: linear-gradient(to bottom, transparent, rgba(14, 165, 233, 0.05), transparent);">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-tag">📊 Prospection & Ventes</div>
-                <h2>Automatisation Prospection <span class="gradient-text">End-to-End</span></h2>
-                <p>De la génération de leads à la conversion, 100% automatisé</p>
-            </div>
-
-            <div class="grid-2">
-                <div class="glass-card feature-card">
-                    <div class="feature-icon">
-                        <div class="icon-box">
-                            <i data-lucide="target" style="color: var(--brand-400); width: 32px; height: 32px;"></i>
-                        </div>
-                    </div>
-                    <h3>Prospection 100% Automatisée</h3>
-                    <ul>
-                        <li>Génération automatique de leads selon critères précis</li>
-                        <li>Qualification automatique des leads</li>
-                        <li>Envoi de messages personnalisés dynamiques</li>
-                        <li>Scénarios conditionnels (réponse, non-réponse, délai, comportement)</li>
-                        <li>Segmentation intelligente</li>
-                        <li>A/B testing automatique des approches</li>
-                    </ul>
-                </div>
-
-                <div class="glass-card feature-card">
-                    <div class="feature-icon">
-                        <div class="icon-box">
-                            <i data-lucide="repeat" style="color: var(--neon-emerald); width: 32px; height: 32px;"></i>
-                        </div>
-                    </div>
-                    <h3>Relances Intelligentes</h3>
-                    <ul>
-                        <li>Relances multi-étapes automatiques</li>
-                        <li>Relances multicanales synchronisées (email, SMS, social, WhatsApp)</li>
-                        <li>Adaptation du message selon l'historique du lead</li>
-                        <li>Arrêt automatique dès conversion ou désintérêt détecté</li>
-                        <li>Nurturing jusqu'à la conversion</li>
-                        <li>Relance e-commerce (paniers abandonnés, post-achat)</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Social Media Automation -->
-    <section id="social-media">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-tag">📱 Réseaux Sociaux</div>
-                <h2>Automatisation <span class="gradient-text">Multi-Canaux</span></h2>
-                <p>Gestion complète et automatisée de tous vos canaux digitaux</p>
-            </div>
-
-            <div class="grid-3">
-                <div class="glass-card feature-card">
-                    <div class="feature-icon">
-                        <div class="icon-box">
-                            <i data-lucide="facebook" style="color: var(--brand-400); width: 28px; height: 28px;"></i>
-                        </div>
-                    </div>
-                    <h3>Facebook & Instagram</h3>
-                    <ul>
-                        <li>Publication automatique (posts, stories)</li>
-                        <li>Gestion des commentaires (réponses contextuelles)</li>
-                        <li>Inbox automatisé (chatbot + logique humaine)</li>
-                        <li>Réponses aux mots-clés</li>
-                        <li>Redirection vers offres/tunnels</li>
-                        <li>Qualification avant contact humain</li>
-                    </ul>
-                </div>
-
-                <div class="glass-card feature-card">
-                    <div class="feature-icon">
-                        <div class="icon-box">
-                            <i data-lucide="share-2" style="color: var(--cyber-purple); width: 28px; height: 28px;"></i>
-                        </div>
-                    </div>
-                    <h3>Autres Canaux</h3>
-                    <ul>
-                        <li><strong>X (Twitter)</strong> : publication, réponses, diffusion</li>
-                        <li><strong>LinkedIn</strong> : posts, messages, nurturing</li>
-                        <li><strong>YouTube</strong> : publication, description</li>
-                        <li><strong>Blogs</strong> : publication + indexation</li>
-                        <li><strong>WhatsApp</strong> : messages, relances, SAV</li>
-                        <li><strong>Emails</strong> : séquences, segmentation</li>
-                    </ul>
-                </div>
-
-                <div class="glass-card feature-card">
-                    <div class="feature-icon">
-                        <div class="icon-box">
-                            <i data-lucide="zap" style="color: var(--neon-emerald); width: 28px; height: 28px;"></i>
-                        </div>
-                    </div>
-                    <h3>Orchestration Intelligente</h3>
-                    <ul>
-                        <li>Tout est orchestré, pas géré canal par canal</li>
-                        <li>Génération automatique de contenus</li>
-                        <li>Déclinaisons multi-formats</li>
-                        <li>Publication synchronisée</li>
-                        <li>Planification intelligente</li>
-                        <li>Repurposing automatisé</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Scraping & Data -->
-    <section id="scraping" style="background: linear-gradient(to bottom, transparent, rgba(147, 51, 234, 0.05), transparent);">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-tag">🧲 Scraping & Data</div>
-                <h2>Extraction & Traitement de Données</h2>
-                <p>Du scraping basique aux systèmes d'extraction complexes</p>
-            </div>
-
-            <div class="grid-2">
-                <div class="glass-card feature-card">
-                    <div class="feature-icon">
-                        <div class="icon-box">
-                            <i data-lucide="database" style="color: var(--brand-400); width: 32px; height: 32px;"></i>
-                        </div>
-                    </div>
-                    <h3>Scraping Avancé</h3>
-                    <ul>
-                        <li><strong>E-commerce</strong> : produits, prix, descriptions, variations, stock</li>
-                        <li><strong>Web</strong> : scraping sur mesure de sites complexes</li>
-                        <li><strong>Réseaux sociaux</strong> : extraction selon besoins précis</li>
-                        <li>Gestion des contraintes (pagination, protection, volumes)</li>
-                        <li>Surveillance de changements en temps réel</li>
-                        <li>Extraction structurée ou non structurée</li>
-                    </ul>
-                </div>
-
-                <div class="glass-card feature-card">
-                    <div class="feature-icon">
-                        <div class="icon-box">
-                            <i data-lucide="filter" style="color: var(--neon-emerald); width: 32px; height: 32px;"></i>
-                        </div>
-                    </div>
-                    <h3>Traitement & Export</h3>
-                    <ul>
-                        <li>Nettoyage automatique des données</li>
-                        <li>Structuration et normalisation</li>
-                        <li>Export vers dashboards en temps réel</li>
-                        <li>Intégration bases de données</li>
-                        <li>Connexion outils marketing (CRM, email, etc.)</li>
-                        <li>Automatisations adaptées aux contraintes client</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SEO & Content -->
-    <section id="seo">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-tag">🔍 SEO & Contenu</div>
-                <h2>Visibilité & Indexation Automatisée</h2>
-            </div>
-
-            <div class="glass-card feature-card" style="max-width: 800px; margin: 0 auto;">
-                <div class="grid-2">
-                    <div>
-                        <h4 style="color: var(--brand-400); margin-bottom: 1rem;">Indexation Automatique</h4>
-                        <ul>
-                            <li>Détection automatique de nouvelles pages</li>
-                            <li>Soumission aux moteurs de recherche</li>
-                            <li>Accélération de la visibilité</li>
-                            <li>Surveillance de l'indexation</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 style="color: var(--neon-emerald); margin-bottom: 1rem;">Automatisation SEO</h4>
-                        <ul>
-                            <li>Optimisation technique automatique</li>
-                            <li>Génération de contenus SEO</li>
-                            <li>Diffusion multi-plateformes</li>
-                            <li>Suivi des performances</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Dashboards & UX -->
-    <section id="dashboards" style="background: linear-gradient(to bottom, transparent, rgba(14, 165, 233, 0.05), transparent);">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-tag">📊 Dashboards & UX</div>
-                <h2>Interfaces Client <span class="gradient-text">Zéro Complexité</span></h2>
-                <p>Le client pilote sans jamais voir les coulisses techniques</p>
-            </div>
-
-            <div class="glass-card" style="padding: 3rem; max-width: 900px; margin: 0 auto;">
-                <div class="grid-2">
-                    <div>
-                        <h4 style="color: var(--brand-400); margin-bottom: 1.5rem;">Interface UI/UX Friendly</h4>
-                        <ul style="margin-bottom: 2rem;">
-                            <li>Dashboards sur mesure</li>
-                            <li>Design simple et intuitif</li>
-                            <li>ZÉRO exposition technique</li>
-                            <li>Le client ne voit que l'essentiel</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 style="color: var(--neon-emerald); margin-bottom: 1.5rem;">Visualisation en Temps Réel</h4>
-                        <ul style="margin-bottom: 2rem;">
-                            <li>Performances & KPIs</li>
-                            <li>État des leads et conversions</li>
-                            <li>État des automatisations</li>
-                            <li>Rapports automatiques</li>
-                        </ul>
-                    </div>
-                </div>
-                <p style="text-align: center; font-size: 1.125rem; color: var(--text-white); margin-top: 2rem;">
-                    <strong>Abstraction totale de la complexité technique</strong> - Le client pilote son système sans être un expert
+                <h2 style="margin-bottom: 1rem;">Projets réalisés</h2>
+                <p style="color: var(--text-tertiary); max-width: 600px; margin: 0 auto;">
+                    Des systèmes d'automatisation déployés et opérationnels
                 </p>
             </div>
-        </div>
-    </section>
-
-    <!-- Maintenance -->
-    <section id="maintenance">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-tag">🔧 Maintenance</div>
-                <h2>Accompagnement Long Terme</h2>
-                <p>Pas de livraison jetable, une logique de partenariat durable</p>
-            </div>
-
-            <div class="glass-card" style="padding: 3rem; max-width: 700px; margin: 0 auto; text-align: center;">
-                <div class="feature-icon" style="display: flex; justify-content: center; margin-bottom: 2rem;">
-                    <div class="icon-box">
-                        <i data-lucide="shield-check" style="color: var(--neon-emerald); width: 40px; height: 40px;"></i>
+            
+            <div class="grid grid-cols-3" id="projects-preview">
+                <!-- Projects will be loaded here -->
+                <div class="card" style="text-align: center;">
+                    <div style="width: 48px; height: 48px; margin: 0 auto 1rem; background: rgba(16, 185, 129, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                        <i data-lucide="loader" style="color: var(--emerald-500); width: 24px; height: 24px;"></i>
                     </div>
+                    <p style="color: var(--text-muted);">Chargement...</p>
                 </div>
-                <h3 style="margin-bottom: 1.5rem;">Maintenance Mensuelle Disponible</h3>
-                <ul style="text-align: left; max-width: 500px; margin: 0 auto;">
-                    <li>Surveillance continue des systèmes</li>
-                    <li>Corrections et optimisations</li>
-                    <li>Ajout progressif de nouvelles fonctionnalités</li>
-                    <li>Support technique réactif</li>
-                    <li>Évolutions selon les besoins</li>
-                </ul>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="projects.html" class="btn btn-secondary">
+                    Voir tous les projets
+                    <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Differentiation -->
-    <section id="differentiation" style="background: linear-gradient(to bottom, transparent, rgba(147, 51, 234, 0.05), transparent);">
+    <!-- CTA Section -->
+    <section class="section">
         <div class="container">
-            <div class="section-header">
-                <div class="section-tag">⭐ Différenciation</div>
-                <h2>Ce Qui Me Distingue</h2>
-            </div>
-
-            <div class="grid-2" style="max-width: 900px; margin: 0 auto;">
-                <div class="glass-card" style="padding: 2.5rem;">
-                    <h3 style="color: var(--brand-400); margin-bottom: 1.5rem;">Vision Architecte</h3>
-                    <ul>
-                        <li>Automatisation réellement à 100%, pas partielle</li>
-                        <li>Vision système complète, pas outil par outil</li>
-                        <li>Maîtrise complète : IA, SaaS, scraping, multi-canaux, UX</li>
-                        <li>Architecture pensée pour la scalabilité</li>
-                    </ul>
-                </div>
-
-                <div class="glass-card" style="padding: 2.5rem;">
-                    <h3 style="color: var(--neon-emerald); margin-bottom: 1.5rem;">Solutions Adaptées</h3>
-                    <ul>
-                        <li>Solutions pensées pour l'Afrique</li>
-                        <li>Business locaux & e-commerce</li>
-                        <li>Entreprises en croissance</li>
-                        <li>Transformation : manuel → système autonome</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section (Dynamic) -->
-    <section id="projects">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-tag">💼 Réalisations</div>
-                <h2>Projets & <span class="gradient-text">Cas d'Usage</span></h2>
-                <p>Exemples concrets de systèmes automatisés déployés</p>
-            </div>
-
-            <div id="projects-grid" class="grid-3">
-                <!-- Projects will be loaded dynamically from Supabase -->
-                <div class="glass-card" style="padding: 2rem; text-align: center;">
-                    <div class="animate-float">
-                        <i data-lucide="loader" style="color: var(--brand-400); width: 48px; height: 48px;"></i>
-                    </div>
-                    <p style="margin-top: 1rem; color: var(--text-gray);">Chargement des projets...</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact & CTA -->
-    <section id="contact" style="background: linear-gradient(to bottom, transparent, rgba(14, 165, 233, 0.1), transparent);">
-        <div class="container">
-            <div class="glass-card" style="padding: 4rem; max-width: 800px; margin: 0 auto; text-align: center;">
-                <div class="section-tag" style="margin-bottom: 2rem;">💬 Discutons de Votre Projet</div>
-                <h2 style="margin-bottom: 1.5rem;">Prêt à Automatiser Votre Business ?</h2>
-                <p style="font-size: 1.125rem; margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto;">
-                    Que vous ayez besoin d'un système d'automatisation complet, d'un SaaS sur mesure, 
-                    ou simplement d'un audit de vos processus actuels, parlons-en.
+            <div class="card" style="text-align: center; padding: 4rem 2rem; background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(139, 92, 246, 0.1)); border: 1px solid rgba(14, 165, 233, 0.2);">
+                <h2 style="margin-bottom: 1rem;">Prêt à automatiser votre business ?</h2>
+                <p style="color: var(--text-tertiary); max-width: 600px; margin: 0 auto 2rem; font-size: 1.125rem;">
+                    Discutons de votre projet et voyons comment je peux vous aider à gagner du temps et de l'argent.
                 </p>
-
-                <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 400px; margin: 0 auto 3rem;">
-                    <a href="mailto:contact@ouzefi.com" class="btn btn-primary" style="justify-content: center;">
-                        <i data-lucide="mail"></i>
-                        Me Contacter par Email
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="contact.html" class="btn btn-primary btn-lg">
+                        <i data-lucide="mail" style="width: 20px; height: 20px;"></i>
+                        Discutons de votre projet
                     </a>
-                    <a href="https://wa.me/yourwhatsappnumber" target="_blank" class="btn btn-secondary" style="justify-content: center;">
-                        <i data-lucide="message-circle"></i>
-                        WhatsApp
+                    <a href="about.html" class="btn btn-secondary btn-lg">
+                        <i data-lucide="user" style="width: 20px; height: 20px;"></i>
+                        En savoir plus sur moi
                     </a>
-                </div>
-
-                <div style="border-top: 1px solid var(--border-subtle); padding-top: 2rem; margin-top: 2rem;">
-                    <h4 style="color: var(--brand-400); margin-bottom: 1rem;">Ce que je propose</h4>
-                    <div class="grid-3" style="text-align: left; margin-top: 1.5rem;">
-                        <div>
-                            <strong style="color: var(--text-white);">Audit Gratuit</strong>
-                            <p style="font-size: 0.875rem; margin-top: 0.5rem;">Analyse de vos processus actuels</p>
-                        </div>
-                        <div>
-                            <strong style="color: var(--text-white);">Devis Sur Mesure</strong>
-                            <p style="font-size: 0.875rem; margin-top: 0.5rem;">Solutions adaptées à votre budget</p>
-                        </div>
-                        <div>
-                            <strong style="color: var(--text-white);">Support Long Terme</strong>
-                            <p style="font-size: 0.875rem; margin-top: 0.5rem;">Maintenance et évolutions</p>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer style="border-top: 1px solid var(--border-subtle); padding: 3rem 0; margin-top: 4rem;">
+    <footer style="border-top: 1px solid var(--border-primary); padding: 3rem 0; margin-top: 4rem;">
         <div class="container">
             <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem;">
                 <div>
-                    <div class="logo" style="margin-bottom: 0.5rem;">Ouzéfi<span class="gradient-text">.</span></div>
-                    <p style="color: var(--text-gray); font-size: 0.875rem;">Architecte de Systèmes d'Automatisation & IA</p>
+                    <div class="nav-logo" style="margin-bottom: 0.5rem;">
+                        <div class="nav-logo-icon">O</div>
+                        <span>Ouzéfi</span>
+                    </div>
+                    <p style="color: var(--text-muted); font-size: 0.875rem; margin: 0;">Architecte de Systèmes d'Automatisation & IA</p>
                 </div>
-                <div style="display: flex; gap: 2rem;">
-                    <a href="#about" style="color: var(--text-gray); text-decoration: none; font-size: 0.875rem;">À propos</a>
-                    <a href="#services" style="color: var(--text-gray); text-decoration: none; font-size: 0.875rem;">Services</a>
-                    <a href="#projects" style="color: var(--text-gray); text-decoration: none; font-size: 0.875rem;">Projets</a>
-                    <a href="#contact" style="color: var(--text-gray); text-decoration: none; font-size: 0.875rem;">Contact</a>
+                <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
+                    <a href="/" style="color: var(--text-muted); font-size: 0.875rem;">Accueil</a>
+                    <a href="services.html" style="color: var(--text-muted); font-size: 0.875rem;">Services</a>
+                    <a href="projects.html" style="color: var(--text-muted); font-size: 0.875rem;">Projets</a>
+                    <a href="about.html" style="color: var(--text-muted); font-size: 0.875rem;">À propos</a>
+                    <a href="contact.html" style="color: var(--text-muted); font-size: 0.875rem;">Contact</a>
+                    <a href="admin.html" style="color: var(--brand-400); font-size: 0.875rem;">Admin</a>
                 </div>
             </div>
-            <div style="text-align: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border-subtle);">
-                <p style="color: var(--text-gray); font-size: 0.875rem;">
-                    © 2024 Ouzéfi. Tous droits réservés. | 
-                    <a href="/admin.html" style="color: var(--brand-400); text-decoration: none;">Admin</a>
+            <div style="text-align: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border-secondary);">
+                <p style="color: var(--text-muted); font-size: 0.875rem; margin: 0;">
+                    © 2024 Ouzéfi. Tous droits réservés.
                 </p>
             </div>
         </div>
     </footer>
 
     <!-- Scripts -->
-    <script src="js/main.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/home.js"></script>
     <script>
         // Initialize Lucide icons
         lucide.createIcons();

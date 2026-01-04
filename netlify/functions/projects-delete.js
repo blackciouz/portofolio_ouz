@@ -1,48 +1,59 @@
 const { createClient } = require('@supabase/supabase-js');
 
 exports.handler = async (event, context) => {
-  // Configuration CORS
   const headers = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type',
-    'Access-Control-Allow-Methods': 'GET, OPTIONS',
+    'Access-Control-Allow-Methods': 'DELETE, OPTIONS',
     'Content-Type': 'application/json'
   };
 
-  // Handle preflight
   if (event.httpMethod === 'OPTIONS') {
     return { statusCode: 200, headers, body: '' };
   }
 
+  if (event.httpMethod !== 'DELETE') {
+    return {
+      statusCode: 405,
+      headers,
+      body: JSON.stringify({ success: false, error: 'Method not allowed' })
+    };
+  }
+
   try {
-    // Initialize Supabase client
+    const body = JSON.parse(event.body);
+    
+    if (body.adminPassword !== process.env.ADMIN_PASSWORD) {
+      return {
+        statusCode: 401,
+        headers,
+        body: JSON.stringify({ success: false, error: 'Unauthorized' })
+      };
+    }
+
     const supabase = createClient(
       process.env.SUPABASE_URL,
-      process.env.SUPABASE_ANON_KEY
+      process.env.SUPABASE_SERVICE_ROLE_KEY
     );
 
-    // Get all projects, ordered by featured and creation date
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from('projects')
-      .select('*')
-      .order('featured', { ascending: false })
-      .order('created_at', { ascending: false });
+      .delete()
+      .eq('id', body.id);
 
-    if (error) {
-      throw error;
-    }
+    if (error) throw error;
 
     return {
       statusCode: 200,
       headers,
       body: JSON.stringify({
         success: true,
-        data: data
+        message: 'Project deleted successfully'
       })
     };
 
   } catch (error) {
-    console.error('Error fetching projects:', error);
+    console.error('Error deleting project:', error);
     return {
       statusCode: 500,
       headers,

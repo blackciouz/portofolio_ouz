@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="À propos d'Ouzéfi - Architecte de systèmes d'automatisation">
+    <title>À propos - Ouzéfi</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">
+                <div class="nav-logo-icon">O</div>
+                <span>Ouzéfi</span>
+            </a>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="/" class="nav-link">Accueil</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="projects.html" class="nav-link">Projets</a></li>
+                <li><a href="about.html" class="nav-link active">À propos</a></li>
+                <li class="nav-cta">
+                    <a href="contact.html" class="btn btn-primary">
+                        <i data-lucide="mail" style="width: 16px; height: 16px;"></i>
+                        Contact
+                    </a>
+                </li>
+            </ul>
+            
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="section section-lg" style="padding-top: 140px;">
+        <div class="container">
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <div style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(14, 165, 233, 0.1); border: 1px solid rgba(14, 165, 233, 0.2); border-radius: 999px; margin-bottom: 1.5rem; font-size: 0.875rem; color: var(--brand-400); font-weight: 600;">
+                    <i data-lucide="user" style="width: 16px; height: 16px;"></i>
+                    <span>À propos</span>
+                </div>
+                
+                <h1 style="margin-bottom: 1.5rem;">
+                    Ouzéfi, <span class="text-gradient">21 ans</span><br>
+                    Architecte de Systèmes d'Automatisation
+                </h1>
+                
+                <p style="font-size: 1.125rem; color: var(--text-tertiary); line-height: 1.8;">
+                    Je conçois et déploie des systèmes automatisés complets, intégrant IA, SaaS, scraping, 
+                    diffusion multi-canaux, dashboards et maintenance, avec une abstraction totale de la complexité 
+                    pour le client final.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision Section -->
+    <section class="section">
+        <div class="container">
+            <div class="grid grid-cols-3">
+                <div class="card">
+                    <div style="width: 56px; height: 56px; background: rgba(14, 165, 233, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                        <i data-lucide="brain" style="color: var(--brand-400); width: 28px; height: 28px;"></i>
+                    </div>
+                    <h3 style="margin-bottom: 1rem;">Vision</h3>
+                    <p style="color: var(--text-tertiary); line-height: 1.6;">
+                        Automatisation réellement end-to-end, pas outil par outil. Architecture système pensée pour la scalabilité.
+                    </p>
+                </div>
+                
+                <div class="card">
+                    <div style="width: 56px; height: 56px; background: rgba(16, 185, 129, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                        <i data-lucide="zap" style="color: var(--emerald-500); width: 28px; height: 28px;"></i>
+                    </div>
+                    <h3 style="margin-bottom: 1rem;">Approche</h3>
+                    <p style="color: var(--text-tertiary); line-height: 1.6;">
+                        Vision système complète. Maîtrise complète : IA, SaaS, scraping, multi-canaux, UX, maintenance.
+                    </p>
+                </div>
+                
+                <div class="card">
+                    <div style="width: 56px; height: 56px; background: rgba(139, 92, 246, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                        <i data-lucide="target" style="color: var(--purple-500); width: 28px; height: 28px;"></i>
+                    </div>
+                    <h3 style="margin-bottom: 1rem;">Résultat</h3>
+                    <p style="color: var(--text-tertiary); line-height: 1.6;">
+                        Le client pilote sans voir les coulisses techniques. Interfaces intuitives, système autonome 24/7.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise Section -->
+    <section class="section" style="background: linear-gradient(to bottom, transparent, rgba(14, 165, 233, 0.03), transparent);">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <h2 style="margin-bottom: 1rem;">Domaines d'expertise</h2>
+                <p style="color: var(--text-tertiary); max-width: 600px; margin: 0 auto;">
+                    Une maîtrise complète de la stack d'automatisation moderne
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-2">
+                <div class="card">
+                    <h3 style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem;">
+                        <i data-lucide="cpu" style="color: var(--brand-400); width: 24px; height: 24px;"></i>
+                        IA & Machine Learning
+                    </h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative; color: var(--text-tertiary);">
+                            <i data-lucide="check" style="position: absolute; left: 0; top: 0.65rem; color: var(--brand-400); width: 16px; height: 16px;"></i>
+                            Chatbots multimodaux (MultiGPT1)
+                        </li>
+                        <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative; color: var(--text-tertiary);">
+                            <i data-lucide="check" style="position: absolute; left: 0; top: 0.65rem; color: var(--brand-400); width: 16px; height: 16px;"></i>
+                            Agrégation de modèles IA
+                        </li>
+                        <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative; color: var(--text-tertiary);">
+                            <i data-lucide="check" style="position: absolute; left: 0; top: 0.65rem; color: var(--brand-400); width: 16px; height: 16px;"></i>
+                            NLP & Computer Vision
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3 style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem;">
+                        <i data-lucide="repeat" style="color: var(--emerald-500); width: 24px; height: 24px;"></i>
+                        Automatisation Avancée
+                    </h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative; color: var(--text-tertiary);">
+                            <i data-lucide="check" style="position: absolute; left: 0; top: 0.65rem; color: var(--emerald-500); width: 16px; height: 16px;"></i>
+                            Prospection 100% automatisée
+                        </li>
+                        <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative; color: var(--text-tertiary);">
+                            <i data-lucide="check" style="position: absolute; left: 0; top: 0.65rem; color: var(--emerald-500); width: 16px; height: 16px;"></i>
+                            Marketing multicanal
+                        </li>
+                        <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative; color: var(--text-tertiary);">
+                            <i data-lucide="check" style="position: absolute; left: 0; top: 0.65rem; color: var(--emerald-500); width: 16px; height: 16px;"></i>
+                            Workflows complexes
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3 style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem;">
+                        <i data-lucide="rocket" style="color: var(--purple-500); width: 24px; height: 24px;"></i>
+                        Développement SaaS
+                    </h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative; color: var(--text-tertiary);">
+                            <i data-lucide="check" style="position: absolute; left: 0; top: 0.65rem; color: var(--purple-500); width: 16px; height: 16px;"></i>
+                            Architecture cloud native
+                        </li>
+                        <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative; color: var(--text-tertiary);">
+                            <i data-lucide="check" style="position: absolute; left: 0; top: 0.65rem; color: var(--purple-500); width: 16px; height: 16px;"></i>
+                            API REST & GraphQL
+                        </li>
+                        <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative; color: var(--text-tertiary);">
+                            <i data-lucide="check" style="position: absolute; left: 0; top: 0.65rem; color: var(--purple-500); width: 16px; height: 16px;"></i>
+                            Monétisation & payments
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3 style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem;">
+                        <i data-lucide="database" style="color: var(--brand-400); width: 24px; height: 24px;"></i>
+                        Data & Scraping
+                    </h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative; color: var(--text-tertiary);">
+                            <i data-lucide="check" style="position: absolute; left: 0; top: 0.65rem; color: var(--brand-400); width: 16px; height: 16px;"></i>
+                            Scraping e-commerce & web
+                        </li>
+                        <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative; color: var(--text-tertiary);">
+                            <i data-lucide="check" style="position: absolute; left: 0; top: 0.65rem; color: var(--brand-400); width: 16px; height: 16px;"></i>
+                            Traitement de données
+                        </li>
+                        <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative; color: var(--text-tertiary);">
+                            <i data-lucide="check" style="position: absolute; left: 0; top: 0.65rem; color: var(--brand-400); width: 16px; height: 16px;"></i>
+                            Pipelines data en temps réel
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section">
+        <div class="container">
+            <div class="card" style="text-align: center; padding: 4rem 2rem; background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(139, 92, 246, 0.1)); border: 1px solid rgba(14, 165, 233, 0.2);">
+                <h2 style="margin-bottom: 1rem; font-size: 2.25rem;">Travaillons ensemble</h2>
+                <p style="color: var(--text-tertiary); max-width: 600px; margin: 0 auto 2rem; font-size: 1.125rem;">
+                    Vous avez un projet d'automatisation ou besoin d'un système sur mesure ? Discutons-en.
+                </p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="contact.html" class="btn btn-primary btn-lg">
+                        <i data-lucide="mail" style="width: 20px; height: 20px;"></i>
+                        Me contacter
+                    </a>
+                    <a href="services.html" class="btn btn-secondary btn-lg">
+                        <i data-lucide="briefcase" style="width: 20px; height: 20px;"></i>
+                        Voir mes services
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="border-top: 1px solid var(--border-primary); padding: 3rem 0;">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem;">
+                <div>
+                    <div class="nav-logo" style="margin-bottom: 0.5rem;">
+                        <div class="nav-logo-icon">O</div>
+                        <span>Ouzéfi</span>
+                    </div>
+                    <p style="color: var(--text-muted); font-size: 0.875rem; margin: 0;">Architecte de Systèmes d'Automatisation & IA</p>
+                </div>
+                <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
+                    <a href="/" style="color: var(--text-muted); font-size: 0.875rem;">Accueil</a>
+                    <a href="services.html" style="color: var(--text-muted); font-size: 0.875rem;">Services</a>
+                    <a href="projects.html" style="color: var(--text-muted); font-size: 0.875rem;">Projets</a>
+                    <a href="about.html" style="color: var(--text-muted); font-size: 0.875rem;">À propos</a>
+                    <a href="contact.html" style="color: var(--text-muted); font-size: 0.875rem;">Contact</a>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border-secondary);">
+                <p style="color: var(--text-muted); font-size: 0.875rem; margin: 0;">
+                    © 2024 Ouzéfi. Tous droits réservés.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/nav.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+
+</body>
+</html>
