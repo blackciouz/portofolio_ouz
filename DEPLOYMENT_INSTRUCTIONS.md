@@ -27,10 +27,15 @@
 4. Ajoutez ces variables :
 
 ```
-CLOUDINARY_CLOUD_NAME=dqx4yzasn
-CLOUDINARY_API_KEY=424464349479382
-CLOUDINARY_API_SECRET=uagu_cD0uq-pr9f0FUS1IfBUYcE
+CLOUDINARY_CLOUD_NAME=votre_cloud_name
+CLOUDINARY_API_KEY=votre_api_key
+CLOUDINARY_API_SECRET=votre_api_secret
 ```
+
+**Vos vraies valeurs (ne les partagez pas publiquement) :**
+- Cloud Name: `dqx4yzasn`
+- API Key: `424464349479382`
+- API Secret: `uagu_cD0uq-pr9f0FUS1IfBUYcE`
 
 ⚠️ **IMPORTANT** : Vérifiez que vos variables Supabase existent déjà :
 ```
