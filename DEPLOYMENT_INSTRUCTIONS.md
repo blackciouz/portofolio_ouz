@@ -32,10 +32,7 @@ CLOUDINARY_API_KEY=votre_api_key
 CLOUDINARY_API_SECRET=votre_api_secret
 ```
 
-**Vos vraies valeurs (ne les partagez pas publiquement) :**
-- Cloud Name: `dqx4yzasn`
-- API Key: `424464349479382`
-- API Secret: `uagu_cD0uq-pr9f0FUS1IfBUYcE`
+**Note :** Utilisez vos vraies valeurs Cloudinary (disponibles sur https://console.cloudinary.com/)
 
 ⚠️ **IMPORTANT** : Vérifiez que vos variables Supabase existent déjà :
 ```
