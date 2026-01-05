@@ -152,8 +152,21 @@
         }
     </style>
 
+    <!-- Contact CTA Buttons -->
+    <div id="contact-cta-container"></div>
+    
     <!-- Cal.com Floating Button -->
     <script src="js/cal-embed.js"></script>
+    
+    <script>
+        // Load contact CTA component
+        fetch('components/contact-cta.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('contact-cta-container').innerHTML = html;
+            })
+            .catch(error => console.error('Error loading contact CTA:', error));
+    </script>
     
     <script src="js/nav.js"></script>
     <script src="js/projects.js"></script>

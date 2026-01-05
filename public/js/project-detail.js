@@ -133,7 +133,7 @@ function renderProjectDetail(project) {
                 <div class="grid grid-cols-2" style="gap: 1rem;">
                     ${project.gallery_images.map(img => `
                         <img src="${img}" alt="Gallery image" class="gallery-image" data-lightbox
-                             style="width: 100%; height: 300px; object-fit: cover; border-radius: 0.75rem; border: 1px solid var(--border-primary); cursor: zoom-in; transition: transform 0.3s ease;" 
+                             style="width: 100%; height: auto; min-height: 300px; max-height: 500px; object-fit: contain; border-radius: 0.75rem; border: 1px solid var(--border-primary); cursor: zoom-in; transition: transform 0.3s ease; background: rgba(15, 23, 42, 0.5);" 
                              onmouseover="this.style.transform='scale(1.02)'"
                              onmouseout="this.style.transform='scale(1)'">
                     `).join('')}

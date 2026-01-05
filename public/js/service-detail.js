@@ -81,7 +81,7 @@ function renderServiceDetail(service) {
                 <h3 style="margin-bottom: 1.5rem;">Galerie</h3>
                 <div class="grid grid-cols-3" style="gap: 1rem;">
                     ${service.gallery_images.map(img => `
-                        <img src="${img}" alt="Gallery" style="width: 100%; height: 200px; object-fit: cover; border-radius: 0.75rem; border: 1px solid var(--border-primary);">
+                        <img src="${img}" alt="Gallery" class="gallery-image" data-lightbox style="width: 100%; height: auto; min-height: 250px; max-height: 400px; object-fit: contain; border-radius: 0.75rem; border: 1px solid var(--border-primary); cursor: zoom-in; transition: transform 0.3s ease; background: rgba(15, 23, 42, 0.5);">
                     `).join('')}
                 </div>
             </div>
