@@ -1,6 +1,6 @@
 <!-- CONTACT CTA SECTION - Prominent contact links -->
 <section class="contact-cta-section" style="position: fixed; bottom: 20px; right: 20px; z-index: 999;">
-    <div class="contact-cta-container" style="display: flex; flex-direction: column; gap: 12px; align-items: flex-end;">
+    <div class="contact-cta-container" style="display: flex; gap: 12px; align-items: center;">
         
         <!-- Email -->
         <a href="mailto:ouzefib@gmail.com" 
@@ -14,7 +14,7 @@
         </a>
         
         <!-- WhatsApp -->
-        <a href="https://wa.me/22901516333351" 
+        <a href="https://wa.me/22951633351" 
            target="_blank"
            rel="noopener noreferrer"
            class="contact-cta-btn"
@@ -26,7 +26,7 @@
         </a>
         
         <!-- ComeUp -->
-        <a href="https://comeup.com/@ouzefi" 
+        <a href="https://comeup.com/fr/@automaciouz" 
            target="_blank"
            rel="noopener noreferrer"
            class="contact-cta-btn"
@@ -40,7 +40,7 @@
         </a>
         
         <!-- Upwork -->
-        <a href="https://www.upwork.com/freelancers/~YOUR_UPWORK_ID" 
+        <a href="https://upwork.com/freelancers/~01118d44db25713a68" 
            target="_blank"
            rel="noopener noreferrer"
            class="contact-cta-btn"
@@ -57,6 +57,13 @@
     .contact-cta-btn:hover {
         transform: translateX(-5px) scale(1.05) !important;
         box-shadow: 0 8px 30px rgba(14, 165, 233, 0.4) !important;
+    }
+    
+    @media (max-width: 1024px) {
+        .contact-cta-container {
+            flex-direction: column !important;
+            align-items: flex-end !important;
+        }
     }
     
     @media (max-width: 768px) {
