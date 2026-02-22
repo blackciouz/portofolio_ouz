@@ -36,11 +36,11 @@ exports.handler = async (event, context) => {
             process.env.SUPABASE_ANON_KEY
         );
 
-        // Update display_order for each project
+        // Update order_index for each project (colonne unifiée)
         const updatePromises = order.map(item => 
             supabase
                 .from('projects')
-                .update({ display_order: item.display_order })
+                .update({ order_index: item.display_order })
                 .eq('id', item.id)
         );
 

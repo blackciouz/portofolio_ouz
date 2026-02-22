@@ -537,6 +537,11 @@ strong {
   .grid-cols-3 {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  /* grid-cols-2 passe en 1 colonne sur tablette pour éviter cards trop compressées */
+  .grid-cols-2 {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Mobile */

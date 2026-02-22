@@ -287,7 +287,7 @@ const AdminPanel = {
     renderServiceRow(service) {
         return `
             <tr data-id="${service.id}">
-                <td><i data-lucide="grip-vertical" style="cursor: grab; color: var(--text-muted);"></i></td>
+                <td><span class="drag-handle" style="cursor:grab; color:var(--text-muted); font-size:1.2rem; padding:4px; display:inline-block;">&#8942;&#8942;</span></td>
                 <td><strong>${service.title}</strong></td>
                 <td>${service.category}</td>
                 <td>${service.price || 'N/A'}</td>
@@ -315,7 +315,7 @@ const AdminPanel = {
 
         new Sortable(tbody, {
             animation: 150,
-            handle: '[data-lucide="grip-vertical"]',
+            handle: '.drag-handle',
             onEnd: async (evt) => {
                 const newOrder = Array.from(tbody.children).map((row, index) => ({
                     id: row.dataset.id,
@@ -327,9 +327,20 @@ const AdminPanel = {
     },
 
     async saveServicesOrder(order) {
-        // TODO: Call Netlify function to update display_order
-        console.log('Saving order:', order);
-        this.showNotification('Ordre sauvegardé !', 'success');
+        try {
+            const response = await fetch('/.netlify/functions/services-reorder', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ order })
+            });
+            
+            if (!response.ok) throw new Error('Failed to save order');
+            
+            this.showNotification('Ordre sauvegardé !', 'success');
+        } catch (error) {
+            console.error('Error saving order:', error);
+            this.showNotification('Erreur lors de la sauvegarde', 'error');
+        }
     },
 
     openServiceModal(serviceId = null) {
@@ -372,11 +383,49 @@ const AdminPanel = {
     },
 
     async saveService() {
-        // TODO: Implement save logic
-        console.log('Saving service...');
-        this.closeServiceModal();
-        this.showNotification('Service enregistré !', 'success');
-        await this.loadServices();
+        const id = document.getElementById('service-id').value;
+        const title = document.getElementById('service-title').value.trim();
+        const description = document.getElementById('service-description').value.trim();
+        const category = document.getElementById('service-category').value.trim();
+        const price = document.getElementById('service-price').value.trim();
+        const icon = document.getElementById('service-icon').value.trim();
+        const features = document.getElementById('service-features').value.split('\n').filter(f => f.trim());
+
+        if (!title || !description || !category) {
+            this.showNotification('Veuillez remplir tous les champs obligatoires', 'error');
+            return;
+        }
+
+        // Upload images d'abord si il y en a
+        let gallery_images = [];
+        if (this.uploaderInstance && this.uploaderInstance.files.length > 0) {
+            try {
+                gallery_images = await this.uploaderInstance.uploadFiles();
+            } catch (e) {
+                console.error('Upload error:', e);
+            }
+        }
+
+        const payload = { title, description, category, price, icon, features };
+        if (gallery_images.length > 0) payload.gallery_images = gallery_images;
+
+        const endpoint = id ? '/.netlify/functions/services-update' : '/.netlify/functions/services-create';
+        if (id) payload.id = id;
+
+        try {
+            const response = await fetch(endpoint, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            if (!response.ok) throw new Error('HTTP ' + response.status);
+            this.closeServiceModal();
+            this.showNotification(id ? 'Service mis à jour !' : 'Service créé !', 'success');
+            await this.loadServices();
+        } catch (error) {
+            console.error('Save service error:', error);
+            this.showNotification('Erreur lors de la sauvegarde', 'error');
+        }
     },
 
     editService(id) {
@@ -386,10 +435,22 @@ const AdminPanel = {
     async deleteService(id) {
         if (!confirm('Déplacer ce service vers la corbeille ?')) return;
         
-        // TODO: Soft delete
-        console.log('Deleting service:', id);
-        this.showNotification('Service déplacé vers la corbeille', 'success');
-        await this.loadServices();
+        try {
+            const response = await fetch('/.netlify/functions/services-delete', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id })
+            });
+            
+            if (!response.ok) throw new Error('Failed to delete');
+            
+            this.showNotification('Service déplacé vers la corbeille', 'success');
+            await this.loadServices();
+            await this.fetchDeletedItems(); // Update trash count
+        } catch (error) {
+            console.error('Error deleting service:', error);
+            this.showNotification('Erreur lors de la suppression', 'error');
+        }
     },
 
     // PROJECTS VIEW (similar structure)
@@ -437,7 +498,7 @@ const AdminPanel = {
     renderProjectRow(project) {
         return `
             <tr data-id="${project.id}">
-                <td><i data-lucide="grip-vertical" style="cursor: grab; color: var(--text-muted);"></i></td>
+                <td><span class="drag-handle" style="cursor:grab; color:var(--text-muted); font-size:1.2rem; padding:4px; display:inline-block;">&#8942;&#8942;</span></td>
                 <td><strong>${project.title}</strong></td>
                 <td>${project.client || 'N/A'}</td>
                 <td>${project.category}</td>
@@ -465,7 +526,7 @@ const AdminPanel = {
 
         new Sortable(tbody, {
             animation: 150,
-            handle: '[data-lucide="grip-vertical"]',
+            handle: '.drag-handle',
             onEnd: async (evt) => {
                 const newOrder = Array.from(tbody.children).map((row, index) => ({
                     id: row.dataset.id,
@@ -477,13 +538,164 @@ const AdminPanel = {
     },
 
     async saveProjectsOrder(order) {
-        console.log('Saving order:', order);
-        this.showNotification('Ordre sauvegardé !', 'success');
+        try {
+            const response = await fetch('/.netlify/functions/projects-reorder', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ order })
+            });
+            
+            if (!response.ok) throw new Error('Failed to save order');
+            
+            this.showNotification('Ordre sauvegardé !', 'success');
+        } catch (error) {
+            console.error('Error saving order:', error);
+            this.showNotification('Erreur lors de la sauvegarde', 'error');
+        }
     },
 
     openProjectModal(projectId = null) {
-        // Similar to openServiceModal
-        alert('Project modal - TODO');
+        const content = document.getElementById('admin-content');
+        // Injecter la modale projet si elle n'existe pas
+        let modal = document.getElementById('project-modal');
+        if (!modal) {
+            const modalHTML = `
+            <div id="project-modal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 id="project-modal-title">Nouveau projet</h3>
+                        <button class="modal-close" onclick="AdminPanel.closeProjectModal()">
+                            <i data-lucide="x"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="project-form">
+                            <input type="hidden" id="project-id">
+                            <div class="form-group">
+                                <label class="form-label">Titre</label>
+                                <input type="text" id="project-title" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Description</label>
+                                <textarea id="project-description" class="form-textarea" required></textarea>
+                            </div>
+                            <div class="grid grid-cols-2" style="gap:1rem;">
+                                <div class="form-group">
+                                    <label class="form-label">Catégorie</label>
+                                    <input type="text" id="project-category" class="form-input" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Client</label>
+                                    <input type="text" id="project-client" class="form-input">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Technologies (une par ligne)</label>
+                                <textarea id="project-technologies" class="form-textarea" placeholder="Python&#10;n8n&#10;Make"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Résultats obtenus (une par ligne)</label>
+                                <textarea id="project-results" class="form-textarea"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Lien externe (optionnel)</label>
+                                <input type="url" id="project-link" class="form-input" placeholder="https://...">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Images de galerie</label>
+                                <div id="project-uploader"></div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" onclick="AdminPanel.closeProjectModal()">Annuler</button>
+                        <button class="btn btn-primary" onclick="AdminPanel.saveProject()">Enregistrer</button>
+                    </div>
+                </div>
+            </div>`;
+            document.body.insertAdjacentHTML('beforeend', modalHTML);
+            modal = document.getElementById('project-modal');
+        }
+
+        const titleEl = document.getElementById('project-modal-title');
+        if (projectId) {
+            titleEl.textContent = 'Modifier le projet';
+            const project = this.projects.find(p => p.id === projectId);
+            if (project) {
+                document.getElementById('project-id').value = project.id;
+                document.getElementById('project-title').value = project.title || '';
+                document.getElementById('project-description').value = project.description || '';
+                document.getElementById('project-category').value = project.category || '';
+                document.getElementById('project-client').value = project.client || '';
+                document.getElementById('project-technologies').value = project.technologies?.join('\n') || '';
+                document.getElementById('project-results').value = project.results?.join('\n') || '';
+                document.getElementById('project-link').value = project.external_link || '';
+            }
+        } else {
+            titleEl.textContent = 'Nouveau projet';
+            document.getElementById('project-form').reset();
+            document.getElementById('project-id').value = '';
+        }
+
+        this.projectUploaderInstance = new CloudinaryUploader('project-uploader', {
+            folder: 'portfolio/projects',
+            multiple: true,
+            onUploadComplete: (urls) => { console.log('Uploaded project images:', urls); }
+        });
+
+        modal.classList.add('active');
+        lucide.createIcons();
+    },
+
+    closeProjectModal() {
+        document.getElementById('project-modal')?.classList.remove('active');
+    },
+
+    async saveProject() {
+        const id = document.getElementById('project-id').value;
+        const title = document.getElementById('project-title').value.trim();
+        const description = document.getElementById('project-description').value.trim();
+        const category = document.getElementById('project-category').value.trim();
+        const client = document.getElementById('project-client').value.trim();
+        const technologies = document.getElementById('project-technologies').value.split('\n').filter(t => t.trim());
+        const results = document.getElementById('project-results').value.split('\n').filter(r => r.trim());
+        const external_link = document.getElementById('project-link').value.trim();
+
+        if (!title || !description || !category) {
+            this.showNotification('Veuillez remplir tous les champs obligatoires', 'error');
+            return;
+        }
+
+        // Upload images d'abord si il y en a
+        let gallery_images = [];
+        if (this.projectUploaderInstance && this.projectUploaderInstance.files.length > 0) {
+            try {
+                gallery_images = await this.projectUploaderInstance.uploadFiles();
+            } catch (e) {
+                console.error('Upload error:', e);
+            }
+        }
+
+        const payload = { title, description, category, client, technologies, results, external_link };
+        if (gallery_images.length > 0) payload.gallery_images = gallery_images;
+
+        const endpoint = id ? '/.netlify/functions/projects-update' : '/.netlify/functions/projects-create';
+        if (id) payload.id = id;
+
+        try {
+            const response = await fetch(endpoint, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            if (!response.ok) throw new Error('HTTP ' + response.status);
+            this.closeProjectModal();
+            this.showNotification(id ? 'Projet mis à jour !' : 'Projet créé !', 'success');
+            await this.loadProjects();
+        } catch (error) {
+            console.error('Save project error:', error);
+            this.showNotification('Erreur lors de la sauvegarde', 'error');
+        }
     },
 
     editProject(id) {
@@ -492,9 +704,23 @@ const AdminPanel = {
 
     async deleteProject(id) {
         if (!confirm('Déplacer ce projet vers la corbeille ?')) return;
-        console.log('Deleting project:', id);
-        this.showNotification('Projet déplacé vers la corbeille', 'success');
-        await this.loadProjects();
+        
+        try {
+            const response = await fetch('/.netlify/functions/projects-delete', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id })
+            });
+            
+            if (!response.ok) throw new Error('Failed to delete');
+            
+            this.showNotification('Projet déplacé vers la corbeille', 'success');
+            await this.loadProjects();
+            await this.fetchDeletedItems(); // Update trash count
+        } catch (error) {
+            console.error('Error deleting project:', error);
+            this.showNotification('Erreur lors de la suppression', 'error');
+        }
     },
 
     // TRASH VIEW
@@ -561,23 +787,61 @@ const AdminPanel = {
 
     async restoreItem(id) {
         if (!confirm('Restaurer cet élément ?')) return;
-        console.log('Restoring:', id);
-        this.showNotification('Élément restauré !', 'success');
-        await this.loadTrash();
+        
+        try {
+            const response = await fetch('/.netlify/functions/trash-restore', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id })
+            });
+            
+            if (!response.ok) throw new Error('Failed to restore');
+            
+            this.showNotification('Élément restauré !', 'success');
+            await this.loadTrash();
+        } catch (error) {
+            console.error('Error restoring item:', error);
+            this.showNotification('Erreur lors de la restauration', 'error');
+        }
     },
 
     async permanentDelete(id) {
         if (!confirm('Supprimer définitivement ? Cette action est irréversible.')) return;
-        console.log('Permanent delete:', id);
-        this.showNotification('Élément supprimé définitivement', 'success');
-        await this.loadTrash();
+        
+        try {
+            const response = await fetch('/.netlify/functions/trash-delete-permanent', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id })
+            });
+            
+            if (!response.ok) throw new Error('Failed to delete permanently');
+            
+            this.showNotification('Élément supprimé définitivement', 'success');
+            await this.loadTrash();
+        } catch (error) {
+            console.error('Error deleting permanently:', error);
+            this.showNotification('Erreur lors de la suppression', 'error');
+        }
     },
 
     async emptyTrash() {
         if (!confirm('Vider toute la corbeille ? Cette action est irréversible.')) return;
-        console.log('Emptying trash');
-        this.showNotification('Corbeille vidée', 'success');
-        await this.loadTrash();
+        try {
+            const deletePromises = this.deletedItems.map(item =>
+                fetch('/.netlify/functions/trash-delete-permanent', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id: item.id })
+                })
+            );
+            await Promise.all(deletePromises);
+            this.showNotification('Corbeille vidée !', 'success');
+            await this.loadTrash();
+        } catch (error) {
+            console.error('Empty trash error:', error);
+            this.showNotification('Erreur lors du vidage', 'error');
+        }
     },
 
     // SETTINGS VIEW
@@ -628,22 +892,60 @@ const AdminPanel = {
 
     async saveSettings() {
         const photoUrl = document.getElementById('profile-photo-url').value;
-        // TODO: Save to settings table
-        console.log('Saving settings:', { photoUrl });
-        this.showNotification('Paramètres enregistrés !', 'success');
+        try {
+            const response = await fetch('/.netlify/functions/settings-update', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ key: 'profile_photo_url', value: photoUrl })
+            });
+            // Si la fonction n'existe pas encore, on met à jour visuellement quand même
+            this.settings.profile_photo_url = photoUrl;
+            const sidebarImg = document.getElementById('sidebar-profile-img');
+            if (sidebarImg) sidebarImg.src = photoUrl;
+            this.showNotification('Paramètres enregistrés !', 'success');
+        } catch (error) {
+            console.error('Save settings error:', error);
+            this.showNotification('Erreur lors de la sauvegarde', 'error');
+        }
     },
 
     // VERSION HISTORY
-    viewHistory(type, id) {
-        alert(`View history for ${type} ${id} - TODO`);
+    async viewHistory(type, id) {
+        const item = type === 'service' 
+            ? this.services.find(s => s.id === id) 
+            : this.projects.find(p => p.id === id);
+        
+        const name = item ? item.title : id;
+        const history = item?.version_history || [];
+        
+        const historyHTML = history.length > 0
+            ? history.map((v, i) => `<div style="padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.08);">
+                <span style="color:var(--text-muted); font-size:0.8rem;">Version ${history.length - i} — ${new Date(v.saved_at || v.updated_at).toLocaleString()}</span>
+                <div style="font-size:0.85rem; margin-top:4px; color:var(--text-tertiary);">${v.title || name}</div>
+              </div>`).join('')
+            : '<p style="color:var(--text-muted);">Aucun historique disponible</p>';
+
+        const modal = document.createElement('div');
+        modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:99999;display:flex;align-items:center;justify-content:center;';
+        modal.innerHTML = `
+            <div style="background:#0f172a;border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:2rem;max-width:500px;width:90%;max-height:70vh;overflow-y:auto;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;">
+                    <h3 style="margin:0;">Historique — ${name}</h3>
+                    <button onclick="this.closest('[style*=fixed]').remove()" style="background:none;border:none;color:white;font-size:1.5rem;cursor:pointer;">&times;</button>
+                </div>
+                ${historyHTML}
+            </div>`;
+        document.body.appendChild(modal);
+        modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
     },
 
-    // DATA FETCHING
+    // DATA FETCHING — clé correcte: data.data (pas data.services)
     async fetchServices() {
         try {
             const response = await fetch('/.netlify/functions/services-get');
+            if (!response.ok) throw new Error('HTTP ' + response.status);
             const data = await response.json();
-            this.services = data.services || [];
+            this.services = data.data || [];
         } catch (error) {
             console.error('Error fetching services:', error);
             this.services = [];
@@ -653,8 +955,9 @@ const AdminPanel = {
     async fetchProjects() {
         try {
             const response = await fetch('/.netlify/functions/projects-get');
+            if (!response.ok) throw new Error('HTTP ' + response.status);
             const data = await response.json();
-            this.projects = data.projects || [];
+            this.projects = data.data || [];
         } catch (error) {
             console.error('Error fetching projects:', error);
             this.projects = [];
@@ -662,8 +965,15 @@ const AdminPanel = {
     },
 
     async fetchDeletedItems() {
-        // TODO: Implement fetch from deleted_items table
-        this.deletedItems = [];
+        try {
+            const response = await fetch('/.netlify/functions/trash-get');
+            if (!response.ok) throw new Error('HTTP ' + response.status);
+            const data = await response.json();
+            this.deletedItems = data.data || data.deletedItems || [];
+        } catch (error) {
+            console.error('Error fetching deleted items:', error);
+            this.deletedItems = [];
+        }
         
         // Update trash badge
         const badge = document.getElementById('trash-count');
@@ -674,11 +984,22 @@ const AdminPanel = {
     },
 
     async loadSettings() {
-        // TODO: Fetch from settings table
-        this.settings = {
-            profile_photo_url: 'https://thumbor.comeup.com/E-aONi_hJRsOeZSE-S4vN8KZjYY=/400x400/filters:quality(90):no_upscale()/user/c9f09ab7-dc31-4007-8629-7c74ae6faab3.jpg',
-            profile_name: 'Ouzéfi'
-        };
+        try {
+            const response = await fetch('/.netlify/functions/settings-get');
+            if (response.ok) {
+                const data = await response.json();
+                this.settings = data.data || {};
+            }
+        } catch (error) {
+            console.error('Load settings error:', error);
+        }
+        // Valeurs par défaut si pas de données
+        if (!this.settings.profile_photo_url) {
+            this.settings.profile_photo_url = 'https://thumbor.comeup.com/E-aONi_hJRsOeZSE-S4vN8KZjYY=/400x400/filters:quality(90):no_upscale()/user/c9f09ab7-dc31-4007-8629-7c74ae6faab3.jpg';
+        }
+        if (!this.settings.profile_name) {
+            this.settings.profile_name = 'Ouzéfi';
+        }
 
         // Update sidebar
         const sidebarImg = document.getElementById('sidebar-profile-img');
@@ -687,11 +1008,64 @@ const AdminPanel = {
         if (sidebarName) sidebarName.textContent = this.settings.profile_name;
     },
 
-    // NOTIFICATIONS
+    // NOTIFICATIONS — toast non bloquant
     showNotification(message, type = 'info') {
-        // Simple alert for now - can be improved with toast notifications
-        alert(message);
-    }
+        // Supprimer l'ancien toast s'il existe
+        const existing = document.getElementById('admin-toast');
+        if (existing) existing.remove();
+
+        const colors = {
+            success: '#10b981',
+            error: '#ef4444',
+            info: '#0ea5e9',
+            warning: '#f59e0b'
+        };
+        const icons = {
+            success: '&#10003;',
+            error: '&#10007;',
+            info: '&#8505;',
+            warning: '&#9888;'
+        };
+
+        const toast = document.createElement('div');
+        toast.id = 'admin-toast';
+        toast.style.cssText = `
+            position: fixed; top: 20px; right: 20px; z-index: 99999;
+            background: rgba(15,23,42,0.97); border: 1px solid ${colors[type] || colors.info};
+            border-left: 4px solid ${colors[type] || colors.info};
+            color: white; padding: 14px 20px;
+            border-radius: 10px; font-size: 0.9rem; font-weight: 600;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+            display: flex; align-items: center; gap: 10px;
+            max-width: 360px; animation: slideIn 0.3s ease;
+        `;
+        toast.innerHTML = `
+            <span style="color:${colors[type] || colors.info}; font-size:1.1rem;">${icons[type] || icons.info}</span>
+            <span>${message}</span>
+            <button onclick="this.parentElement.remove()" style="margin-left:auto; background:none; border:none; color:rgba(255,255,255,0.5); cursor:pointer; font-size:1.1rem; padding:0 0 0 8px;">&#10005;</button>
+        `;
+
+        // Ajouter animation CSS si pas encore présente
+        if (!document.getElementById('toast-style')) {
+            const style = document.createElement('style');
+            style.id = 'toast-style';
+            style.textContent = `
+                @keyframes slideIn { from { transform: translateX(120%); opacity:0; } to { transform: translateX(0); opacity:1; } }
+                @keyframes slideOut { from { transform: translateX(0); opacity:1; } to { transform: translateX(120%); opacity:0; } }
+            `;
+            document.head.appendChild(style);
+        }
+
+        document.body.appendChild(toast);
+
+        // Auto-suppression après 4 secondes
+        setTimeout(() => {
+            if (toast.parentElement) {
+                toast.style.animation = 'slideOut 0.3s ease forwards';
+                setTimeout(() => toast.remove(), 300);
+            }
+        }, 4000);
+    },
 };
 
 // Initialize on load

@@ -3,16 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Contactez Ouz√©fi pour vos projets d'automatisation">
-    <title>Contact - Ouz√©fi</title>
-    
+    <meta name="description" content="Contactez Ouzéfi pour vos projets d'automatisation et IA">
+    <title>Contact - Ouzéfi</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/cal-custom.css">
     <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .contact-quick-btn {
+            display: flex; align-items: center; gap: 12px;
+            padding: 14px 24px;
+            border-radius: 14px;
+            font-weight: 700; font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            border-width: 2px; border-style: solid;
+        }
+        .contact-quick-btn:hover { transform: translateY(-2px); filter: brightness(1.2); }
+        .contact-info-card {
+            transition: all 0.3s; cursor: pointer;
+        }
+        .contact-info-card:hover {
+            border-color: var(--brand-400) !important;
+            transform: translateY(-2px);
+        }
+        @media (max-width: 768px) {
+            .contact-grid { grid-template-columns: 1fr !important; }
+            .contact-quick-btns { justify-content: stretch !important; }
+            .contact-quick-btn { justify-content: center; }
+            #my-cal-inline { min-height: 400px !important; }
+        }
+    </style>
 </head>
 <body>
 
@@ -20,208 +43,157 @@
     <nav class="nav">
         <div class="nav-container">
             <a href="/" class="nav-logo">
-                <div class="nav-logo-icon"><img src="https://thumbor.comeup.com/E-aONi_hJRsOeZSE-S4vN8KZjYY=/400x400/filters:quality(90):no_upscale()/user/c9f09ab7-dc31-4007-8629-7c74ae6faab3.jpg" alt="OuzÈfi"></div>
-                <span>Ouz√©fi</span>
+                <div class="nav-logo-icon"><img src="https://thumbor.comeup.com/E-aONi_hJRsOeZSE-S4vN8KZjYY=/400x400/filters:quality(90):no_upscale()/user/c9f09ab7-dc31-4007-8629-7c74ae6faab3.jpg" alt="Ouzéfi"></div>
+                <span>Ouzéfi</span>
             </a>
-            
             <ul class="nav-menu" id="navMenu">
                 <li><a href="/" class="nav-link">Accueil</a></li>
                 <li><a href="services.html" class="nav-link">Services</a></li>
                 <li><a href="projects.html" class="nav-link">Projets</a></li>
-                <li><a href="about.html" class="nav-link">√Ä propos</a></li>
+                <li><a href="about.html" class="nav-link">À propos</a></li>
                 <li class="nav-cta">
-                    <a href="contact.html" class="btn btn-primary active">
-                        <i data-lucide="mail" style="width: 16px; height: 16px;"></i>
+                    <a href="contact.html" class="btn btn-primary">
+                        <i data-lucide="mail" style="width:16px;height:16px;"></i>
                         Contact
                     </a>
                 </li>
             </ul>
-            
             <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span></span><span></span><span></span>
             </button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="section" style="padding-top: 140px; padding-bottom: 2rem;">
+    <!-- Hero -->
+    <section class="section" style="padding-top:120px; padding-bottom:1rem;">
         <div class="container">
-            <div style="max-width: 700px; margin: 0 auto; text-align: center;">
-                <div style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(14, 165, 233, 0.1); border: 1px solid rgba(14, 165, 233, 0.2); border-radius: 999px; margin-bottom: 1.5rem; font-size: 0.875rem; color: var(--brand-400); font-weight: 600;">
-                    <i data-lucide="message-circle" style="width: 16px; height: 16px;"></i>
+            <div style="max-width:700px; margin:0 auto; text-align:center;">
+                <div style="display:inline-flex; align-items:center; gap:0.5rem; padding:0.5rem 1rem; background:rgba(14,165,233,0.1); border:1px solid rgba(14,165,233,0.2); border-radius:999px; margin-bottom:1.5rem; font-size:0.875rem; color:var(--brand-400); font-weight:600;">
+                    <i data-lucide="message-circle" style="width:16px;height:16px;"></i>
                     <span>Contact</span>
                 </div>
-                
-                <h1 style="margin-bottom: 1.5rem;">
-                    Discutons de <span class="text-gradient">votre projet</span>
-                </h1>
-                
-                <p style="font-size: 1.125rem; color: var(--text-tertiary);">
-                    Vous avez un projet d'automatisation ? Besoin d'un devis ? Une question ? 
-                    Je suis l√† pour vous aider.
-                </p>
+                <h1 style="margin-bottom:1rem;">Discutons de <span class="text-gradient">votre projet</span></h1>
+                <p style="font-size:1.1rem; color:var(--text-tertiary);">Vous avez un projet d'automatisation ? Besoin d'un devis ? Je suis là pour vous aider.</p>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Boutons CTA rapides bien visibles -->
+    <section style="padding:1.5rem 0 2rem;">
+        <div class="container">
+            <div class="contact-quick-btns" style="display:flex; gap:1rem; flex-wrap:wrap; justify-content:center;">
+                <a href="mailto:ouzefib@gmail.com" class="contact-quick-btn"
+                   style="background:rgba(16,185,129,0.12); border-color:rgba(16,185,129,0.6); color:#10b981;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <rect x="2" y="4" width="20" height="16" rx="2"/>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                    </svg>
+                    ouzefib@gmail.com
+                </a>
+                <a href="https://wa.me/22951633351" target="_blank" rel="noopener" class="contact-quick-btn"
+                   style="background:rgba(34,197,94,0.12); border-color:rgba(34,197,94,0.6); color:#22c55e;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+                    </svg>
+                    WhatsApp +229 51 63 33 51
+                </a>
+                <a href="https://comeup.com/fr/@automaciouz" target="_blank" rel="noopener" class="contact-quick-btn"
+                   style="background:rgba(139,92,246,0.12); border-color:rgba(139,92,246,0.6); color:#8b5cf6;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="m8 12 4-4 4 4"/>
+                        <line x1="12" y1="16" x2="12" y2="8"/>
+                    </svg>
+                    ComeUp @automaciouz
+                </a>
+                <a href="https://upwork.com/freelancers/~01118d44db25713a68" target="_blank" rel="noopener" class="contact-quick-btn"
+                   style="background:rgba(14,165,233,0.12); border-color:rgba(14,165,233,0.6); color:#0ea5e9;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.561 13.158c-1.102 0-2.135-.467-3.074-1.227l.228-1.076.008-.042c.207-1.143.849-3.06 2.839-3.06 1.492 0 2.703 1.212 2.703 2.703-.001 1.489-1.212 2.702-2.704 2.702zm0-8.14c-2.539 0-4.51 1.649-5.31 4.366-1.22-1.834-2.148-4.036-2.687-5.892H7.828v7.112c-.002 1.406-1.141 2.546-2.547 2.548-1.405-.002-2.543-1.143-2.545-2.548V3.492H0v7.112c0 2.914 2.37 5.303 5.281 5.303 2.913 0 5.283-2.389 5.283-5.303v-1.19c.529 1.107 1.182 2.229 1.974 3.221l-1.673 7.873h2.797l1.213-5.71c1.063.679 2.285 1.109 3.682 1.109 3.268 0 5.855-2.498 5.855-5.612C24 7.646 21.829 5.018 18.561 5.018z"/>
+                    </svg>
+                    Upwork Freelancer
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section principale -->
     <section class="section-sm">
         <div class="container">
-            <div class="grid grid-cols-2" style="gap: 3rem; align-items: start;">
-                <!-- Contact Info -->
+            <div class="contact-grid" style="display:grid; grid-template-columns:1fr 1.4fr; gap:3rem; align-items:start;">
+                <!-- Infos contact cliquables -->
                 <div>
-                    <h2 style="margin-bottom: 2rem;">Informations de contact</h2>
-                    
-                    <div style="display: flex; flex-direction: column; gap: 1.5rem;">
-                        <div class="card">
-                            <div style="display: flex; align-items: start; gap: 1rem;">
-                                <div style="width: 48px; height: 48px; flex-shrink: 0; background: rgba(14, 165, 233, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
-                                    <i data-lucide="mail" style="color: var(--brand-400); width: 24px; height: 24px;"></i>
+                    <h2 style="margin-bottom:1.5rem;">Me contacter</h2>
+                    <div style="display:flex; flex-direction:column; gap:1rem;">
+
+                        <div class="card contact-info-card" onclick="window.location.href='mailto:ouzefib@gmail.com'">
+                            <div style="display:flex; align-items:center; gap:1rem;">
+                                <div style="width:44px;height:44px;flex-shrink:0;background:rgba(16,185,129,0.1);border-radius:10px;display:flex;align-items:center;justify-content:center;">
+                                    <i data-lucide="mail" style="color:#10b981;width:22px;height:22px;"></i>
                                 </div>
-                                <div>
-                                    <h4 style="margin-bottom: 0.5rem;">Email</h4>
-                                    <a href="mailto:ouzefib@gmail.com" style="color: var(--text-tertiary); text-decoration: none; transition: color 0.2s;">
-                                        ouzefib@gmail.com
-                                    </a>
+                                <div style="flex:1;">
+                                    <div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:2px;">Email</div>
+                                    <div style="color:#10b981;font-weight:700;">ouzefib@gmail.com</div>
                                 </div>
+                                <span style="color:var(--text-muted);">&#8594;</span>
                             </div>
                         </div>
-                        
-                        <div class="card">
-                            <div style="display: flex; align-items: start; gap: 1rem;">
-                                <div style="width: 48px; height: 48px; flex-shrink: 0; background: rgba(16, 185, 129, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
-                                    <i data-lucide="message-square" style="color: var(--emerald-500); width: 24px; height: 24px;"></i>
+
+                        <div class="card contact-info-card" onclick="window.open('https://wa.me/22951633351','_blank')">
+                            <div style="display:flex; align-items:center; gap:1rem;">
+                                <div style="width:44px;height:44px;flex-shrink:0;background:rgba(34,197,94,0.1);border-radius:10px;display:flex;align-items:center;justify-content:center;">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="#22c55e"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
                                 </div>
-                                <div>
-                                    <h4 style="margin-bottom: 0.5rem;">WhatsApp</h4>
-                                    <a href="https://wa.me/2290151633351" target="_blank" style="color: var(--text-tertiary); text-decoration: none; transition: color 0.2s;">
-                                        +229 01 51 63 33 51
-                                    </a>
+                                <div style="flex:1;">
+                                    <div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:2px;">WhatsApp</div>
+                                    <div style="color:#22c55e;font-weight:700;">+229 51 63 33 51</div>
                                 </div>
+                                <span style="color:var(--text-muted);">&#8594;</span>
                             </div>
                         </div>
-                        
-                        <div class="card">
-                            <div style="display: flex; align-items: start; gap: 1rem;">
-                                <div style="width: 48px; height: 48px; flex-shrink: 0; background: rgba(139, 92, 246, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
-                                    <i data-lucide="briefcase" style="color: var(--purple-500); width: 24px; height: 24px;"></i>
+
+                        <div class="card contact-info-card" onclick="window.open('https://comeup.com/fr/@automaciouz','_blank')">
+                            <div style="display:flex; align-items:center; gap:1rem;">
+                                <div style="width:44px;height:44px;flex-shrink:0;background:rgba(139,92,246,0.1);border-radius:10px;display:flex;align-items:center;justify-content:center;">
+                                    <i data-lucide="briefcase" style="color:#8b5cf6;width:22px;height:22px;"></i>
                                 </div>
-                                <div>
-                                    <h4 style="margin-bottom: 0.5rem;">Plateformes Freelance</h4>
-                                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                                        <a href="https://comeup.com/fr/@automaciouz" target="_blank" style="color: var(--text-tertiary); text-decoration: none; transition: color 0.2s; font-size: 0.875rem;">
-                                            ComeUp: @automaciouz
-                                        </a>
-                                        <a href="https://upwork.com/freelancers/~01118d44db25713a68" target="_blank" style="color: var(--text-tertiary); text-decoration: none; transition: color 0.2s; font-size: 0.875rem;">
-                                            Upwork: Ouz√©fi
-                                        </a>
-                                    </div>
+                                <div style="flex:1;">
+                                    <div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:2px;">ComeUp</div>
+                                    <div style="color:#8b5cf6;font-weight:700;">@automaciouz</div>
                                 </div>
+                                <span style="color:var(--text-muted);">&#8594;</span>
                             </div>
                         </div>
-                        
-                        <div class="card">
-                            <div style="display: flex; align-items: start; gap: 1rem;">
-                                <div style="width: 48px; height: 48px; flex-shrink: 0; background: rgba(139, 92, 246, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
-                                    <i data-lucide="map-pin" style="color: var(--purple-500); width: 24px; height: 24px;"></i>
+
+                        <div class="card contact-info-card" onclick="window.open('https://upwork.com/freelancers/~01118d44db25713a68','_blank')">
+                            <div style="display:flex; align-items:center; gap:1rem;">
+                                <div style="width:44px;height:44px;flex-shrink:0;background:rgba(14,165,233,0.1);border-radius:10px;display:flex;align-items:center;justify-content:center;">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="#0ea5e9"><path d="M18.561 13.158c-1.102 0-2.135-.467-3.074-1.227l.228-1.076.008-.042c.207-1.143.849-3.06 2.839-3.06 1.492 0 2.703 1.212 2.703 2.703-.001 1.489-1.212 2.702-2.704 2.702zm0-8.14c-2.539 0-4.51 1.649-5.31 4.366-1.22-1.834-2.148-4.036-2.687-5.892H7.828v7.112c-.002 1.406-1.141 2.546-2.547 2.548-1.405-.002-2.543-1.143-2.545-2.548V3.492H0v7.112c0 2.914 2.37 5.303 5.281 5.303 2.913 0 5.283-2.389 5.283-5.303v-1.19c.529 1.107 1.182 2.229 1.974 3.221l-1.673 7.873h2.797l1.213-5.71c1.063.679 2.285 1.109 3.682 1.109 3.268 0 5.855-2.498 5.855-5.612C24 7.646 21.829 5.018 18.561 5.018z"/></svg>
                                 </div>
-                                <div>
-                                    <h4 style="margin-bottom: 0.5rem;">Localisation</h4>
-                                    <p style="color: var(--text-tertiary); margin: 0;">
-                                        France ¬∑ Disponible √† distance
-                                    </p>
+                                <div style="flex:1;">
+                                    <div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:2px;">Upwork</div>
+                                    <div style="color:#0ea5e9;font-weight:700;">Voir mon profil</div>
                                 </div>
+                                <span style="color:var(--text-muted);">&#8594;</span>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="card" style="margin-top: 2rem; background: linear-gradient(135deg, rgba(14, 165, 233, 0.05), rgba(139, 92, 246, 0.05));">
-                        <h4 style="margin-bottom: 1rem;">Temps de r√©ponse</h4>
-                        <p style="color: var(--text-tertiary); margin: 0;">
-                            Je r√©ponds g√©n√©ralement sous <strong style="color: var(--brand-400);">24 heures</strong> 
-                            les jours ouvrables.
-                        </p>
+
+                        <div class="card" style="background:linear-gradient(135deg,rgba(14,165,233,0.05),rgba(139,92,246,0.05));margin-top:0.5rem;">
+                            <h4 style="margin-bottom:0.5rem;">&#9200; Temps de réponse</h4>
+                            <p style="color:var(--text-tertiary);margin:0;">Je réponds sous <strong style="color:var(--brand-400);">24h</strong> les jours ouvrables.</p>
+                        </div>
                     </div>
                 </div>
-                
-                <!-- Cal.com Booking -->
+
+                <!-- Cal.com Booking - propre et sans scroll interne -->
                 <div>
-                    <div class="card" style="padding: 2.5rem;">
-                        <h3 style="margin-bottom: 1.5rem;">R√©server un cr√©neau</h3>
-                        <p style="color: var(--text-tertiary); margin-bottom: 2rem;">
-                            Choisissez un cr√©neau de 15 minutes pour discuter de votre projet.
+                    <div class="card" style="padding:1.5rem;">
+                        <h3 style="margin-bottom:0.5rem;">&#128197; Réserver un créneau</h3>
+                        <p style="color:var(--text-tertiary);margin-bottom:1rem;font-size:0.875rem;">
+                            15 minutes pour discuter de votre projet. Choisissez un créneau qui vous convient.
                         </p>
-                        
-                        <!-- Cal inline embed code begins -->
-                        <div style="width:100%;height:600px;overflow:auto" id="my-cal-inline-15min"></div>
-                        <!-- Cal inline embed code ends -->
-                    </div>
-                    
-                    <!-- Old form hidden for backup -->
-                    <div style="display: none;">
-                        <form id="contact-form">
-                            <div style="margin-bottom: 1.5rem;">
-                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.875rem; color: var(--text-primary);">
-                                    Nom complet *
-                                </label>
-                                <input type="text" id="name" required
-                                       style="width: 100%; padding: 0.875rem 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-primary); border-radius: 0.5rem; color: var(--text-primary); font-family: var(--font-body); font-size: 0.875rem; transition: all 0.2s;"
-                                       placeholder="Votre nom"
-                                       onfocus="this.style.borderColor='var(--brand-400)'; this.style.background='rgba(255, 255, 255, 0.08)'"
-                                       onblur="this.style.borderColor='var(--border-primary)'; this.style.background='rgba(255, 255, 255, 0.05)'">
-                            </div>
-                            
-                            <div style="margin-bottom: 1.5rem;">
-                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.875rem; color: var(--text-primary);">
-                                    Email *
-                                </label>
-                                <input type="email" id="email" required
-                                       style="width: 100%; padding: 0.875rem 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-primary); border-radius: 0.5rem; color: var(--text-primary); font-family: var(--font-body); font-size: 0.875rem; transition: all 0.2s;"
-                                       placeholder="votre@email.com"
-                                       onfocus="this.style.borderColor='var(--brand-400)'; this.style.background='rgba(255, 255, 255, 0.08)'"
-                                       onblur="this.style.borderColor='var(--border-primary)'; this.style.background='rgba(255, 255, 255, 0.05)'">
-                            </div>
-                            
-                            <div style="margin-bottom: 1.5rem;">
-                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.875rem; color: var(--text-primary);">
-                                    Sujet
-                                </label>
-                                <select id="subject"
-                                        style="width: 100%; padding: 0.875rem 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-primary); border-radius: 0.5rem; color: var(--text-primary); font-family: var(--font-body); font-size: 0.875rem; transition: all 0.2s; cursor: pointer;"
-                                        onfocus="this.style.borderColor='var(--brand-400)'; this.style.background='rgba(255, 255, 255, 0.08)'"
-                                        onblur="this.style.borderColor='var(--border-primary)'; this.style.background='rgba(255, 255, 255, 0.05)'">
-                                    <option value="general" style="background: var(--bg-secondary); color: var(--text-primary);">Question g√©n√©rale</option>
-                                    <option value="devis" style="background: var(--bg-secondary); color: var(--text-primary);">Demande de devis</option>
-                                    <option value="service" style="background: var(--bg-secondary); color: var(--text-primary);">Question sur un service</option>
-                                    <option value="project" style="background: var(--bg-secondary); color: var(--text-primary);">Nouveau projet</option>
-                                    <option value="autre" style="background: var(--bg-secondary); color: var(--text-primary);">Autre</option>
-                                </select>
-                            </div>
-                            
-                            <div style="margin-bottom: 1.5rem;">
-                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.875rem; color: var(--text-primary);">
-                                    Message *
-                                </label>
-                                <textarea id="message" required rows="6"
-                                          style="width: 100%; padding: 0.875rem 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-primary); border-radius: 0.5rem; color: var(--text-primary); font-family: var(--font-body); font-size: 0.875rem; transition: all 0.2s; resize: vertical;"
-                                          placeholder="D√©crivez votre projet ou votre question..."
-                                          onfocus="this.style.borderColor='var(--brand-400)'; this.style.background='rgba(255, 255, 255, 0.08)'"
-                                          onblur="this.style.borderColor='var(--border-primary)'; this.style.background='rgba(255, 255, 255, 0.05)'"></textarea>
-                            </div>
-                            
-                            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
-                                <i data-lucide="send" style="width: 18px; height: 18px;"></i>
-                                Envoyer le message
-                            </button>
-                            
-                            <p style="margin-top: 1rem; font-size: 0.75rem; color: var(--text-muted); text-align: center;">
-                                En soumettant ce formulaire, vous acceptez d'√™tre contact√© par email.
-                            </p>
-                        </form>
-                        
-                        <div id="form-message" style="margin-top: 1rem; display: none;"></div>
+                        <!-- Cal inline — hauteur auto, pas de overflow pour éviter double scroll -->
+                        <div id="my-cal-inline" style="width:100%;"></div>
                     </div>
                 </div>
             </div>
@@ -229,93 +201,62 @@
     </section>
 
     <!-- Footer -->
-    <footer style="border-top: 1px solid var(--border-primary); padding: 3rem 0; margin-top: 4rem;">
+    <footer style="border-top:1px solid var(--border-primary);padding:3rem 0;margin-top:4rem;">
         <div class="container">
-            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem;">
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:2rem;">
                 <div>
-                    <div class="nav-logo" style="margin-bottom: 0.5rem;">
-                        <div class="nav-logo-icon"><img src="https://thumbor.comeup.com/E-aONi_hJRsOeZSE-S4vN8KZjYY=/400x400/filters:quality(90):no_upscale()/user/c9f09ab7-dc31-4007-8629-7c74ae6faab3.jpg" alt="OuzÈfi"></div>
-                        <span>Ouz√©fi</span>
+                    <div class="nav-logo" style="margin-bottom:0.5rem;">
+                        <div class="nav-logo-icon"><img src="https://thumbor.comeup.com/E-aONi_hJRsOeZSE-S4vN8KZjYY=/400x400/filters:quality(90):no_upscale()/user/c9f09ab7-dc31-4007-8629-7c74ae6faab3.jpg" alt="Ouzéfi"></div>
+                        <span>Ouzéfi</span>
                     </div>
-                    <p style="color: var(--text-muted); font-size: 0.875rem; margin: 0;">Architecte de Syst√®mes d'Automatisation & IA</p>
+                    <p style="color:var(--text-muted);font-size:0.875rem;margin:0;">Architecte de Systèmes d'Automatisation &amp; IA</p>
                 </div>
-                <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
-                    <a href="/" style="color: var(--text-muted); font-size: 0.875rem;">Accueil</a>
-                    <a href="services.html" style="color: var(--text-muted); font-size: 0.875rem;">Services</a>
-                    <a href="projects.html" style="color: var(--text-muted); font-size: 0.875rem;">Projets</a>
-                    <a href="about.html" style="color: var(--text-muted); font-size: 0.875rem;">√Ä propos</a>
-                    <a href="contact.html" style="color: var(--text-muted); font-size: 0.875rem;">Contact</a>
+                <div style="display:flex;gap:2rem;flex-wrap:wrap;">
+                    <a href="/" style="color:var(--text-muted);font-size:0.875rem;">Accueil</a>
+                    <a href="services.html" style="color:var(--text-muted);font-size:0.875rem;">Services</a>
+                    <a href="projects.html" style="color:var(--text-muted);font-size:0.875rem;">Projets</a>
+                    <a href="about.html" style="color:var(--text-muted);font-size:0.875rem;">À propos</a>
+                    <a href="contact.html" style="color:var(--text-muted);font-size:0.875rem;">Contact</a>
                 </div>
             </div>
-            <div style="text-align: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border-secondary);">
-                <p style="color: var(--text-muted); font-size: 0.875rem; margin: 0;">
-                    ¬© 2024 Ouz√©fi. Tous droits r√©serv√©s.
+            <div style="text-align:center;margin-top:2rem;padding-top:2rem;border-top:1px solid var(--border-secondary);">
+                <p style="color:var(--text-muted);font-size:0.875rem;margin:0;">
+                    &copy; <span id="current-year">2025</span> Ouzéfi. Tous droits réservés.
                 </p>
             </div>
         </div>
     </footer>
 
-    <!-- Cal inline embed code begins -->
-    <script type="text/javascript">
-      (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
-    Cal("init", "15min", {origin:"https://app.cal.com"});
-
-      Cal.ns["15min"]("inline", {
-        elementOrSelector:"#my-cal-inline-15min",
-        config: {"layout":"month_view"},
-        calLink: "ouzefi-automaciouz-yugozj/15min",
-      });
-
-      Cal.ns["15min"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
-    </script>
-    <!-- Cal inline embed code ends -->
-    
-    <!-- Cal floating-popup embed code begins -->
-    <script type="text/javascript">
-      (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
-    Cal("init", "15min", {origin:"https://app.cal.com"});
-
-      Cal.ns["15min"]("floatingButton", {"calLink":"ouzefi-automaciouz-yugozj/15min","config":{"layout":"month_view"}}); 
-      Cal.ns["15min"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
-    </script>
-    <!-- Cal floating-popup embed code ends -->
-
     <script src="js/nav.js"></script>
     <script>
         lucide.createIcons();
-        
-        // Old contact form handler (kept for backup)
-        if (document.getElementById('contact-form')) {
-        document.getElementById('contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formMessage = document.getElementById('form-message');
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
-            
-            // Create mailto link
-            const mailtoLink = `mailto:ouzefib@gmail.com?subject=${encodeURIComponent(subject + ' - ' + name)}&body=${encodeURIComponent('Nom: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message)}`;
-            
-            // Open email client
-            window.location.href = mailtoLink;
-            
-            // Show success message
-            formMessage.style.display = 'block';
-            formMessage.style.padding = '1rem';
-            formMessage.style.background = 'rgba(16, 185, 129, 0.1)';
-            formMessage.style.border = '1px solid rgba(16, 185, 129, 0.3)';
-            formMessage.style.borderRadius = '0.5rem';
-            formMessage.style.color = 'var(--emerald-500)';
-            formMessage.innerHTML = '<strong>Merci !</strong> Votre client email va s\'ouvrir. Je vous r√©pondrai rapidement.';
-            
-            // Reset form
-            setTimeout(() => {
-                this.reset();
-            }, 1000);
+
+        // Cal.com — initialisation unique propre
+        (function (C, A, L) {
+            let p = function (a, ar) { a.q.push(ar); };
+            let d = C.document;
+            C.Cal = C.Cal || function () {
+                let cal = C.Cal; let ar = arguments;
+                if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; }
+                if (ar[0] === L) {
+                    const api = function () { p(api, arguments); };
+                    const namespace = ar[1];
+                    api.q = api.q || [];
+                    if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); return; }
+                }
+                p(cal, ar);
+            };
+        })(window, "https://app.cal.com/embed/embed.js", "init");
+
+        Cal("init", "rdv", { origin: "https://app.cal.com" });
+
+        Cal.ns["rdv"]("inline", {
+            elementOrSelector: "#my-cal-inline",
+            config: { layout: "month_view", theme: "dark" },
+            calLink: "ouzefi-automaciouz-yugozj/15min",
         });
-        }
+
+        Cal.ns["rdv"]("ui", { hideEventTypeDetails: false, layout: "month_view" });
     </script>
 
 </body>

@@ -7,8 +7,6 @@ const navMenu = document.getElementById('navMenu');
 if (navToggle && navMenu) {
     navToggle.addEventListener('click', () => {
         navMenu.classList.toggle('active');
-        
-        // Animate toggle icon
         const spans = navToggle.querySelectorAll('span');
         if (navMenu.classList.contains('active')) {
             spans[0].style.transform = 'rotate(45deg) translateY(8px)';
@@ -20,8 +18,7 @@ if (navToggle && navMenu) {
             spans[2].style.transform = '';
         }
     });
-    
-    // Close menu when clicking outside
+
     document.addEventListener('click', (e) => {
         if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
             navMenu.classList.remove('active');
@@ -31,8 +28,7 @@ if (navToggle && navMenu) {
             spans[2].style.transform = '';
         }
     });
-    
-    // Close menu when clicking a link
+
     const navLinks = navMenu.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
@@ -45,82 +41,59 @@ if (navToggle && navMenu) {
     });
 }
 
-// Scroll effect for navigation
+// Scroll effect — guard si .nav absent
 const nav = document.querySelector('.nav');
-let lastScroll = 0;
+if (nav) {
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 50) {
+            nav.classList.add('scrolled');
+        } else {
+            nav.classList.remove('scrolled');
+        }
+    });
+}
 
-window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    
-    if (currentScroll > 50) {
-        nav.classList.add('scrolled');
-    } else {
-        nav.classList.remove('scrolled');
-    }
-    
-    lastScroll = currentScroll;
-});
-
-// Set active nav link based on current page
+// Set active nav link based on current page — une seule fois, proprement
 function setActiveNavLink() {
     const currentPath = window.location.pathname;
     const currentPage = currentPath.split('/').pop() || 'index.html';
     const navLinks = document.querySelectorAll('.nav-link');
 
-    // Force remove all active classes first
     navLinks.forEach(link => {
         link.classList.remove('active');
         link.style.removeProperty('color');
         link.style.removeProperty('font-weight');
     });
 
-    // Add active class with forced styling
     navLinks.forEach(link => {
         const href = link.getAttribute('href');
-        
         let isActive = false;
-        
-        // Home page
-        if ((currentPage === '' || currentPage === 'index.html' || currentPath === '/') && href === '/') {
+
+        if ((currentPage === '' || currentPage === 'index.html' || currentPath === '/') && (href === '/' || href === 'index.html')) {
+            isActive = true;
+        } else if ((currentPage === 'services.html' || currentPage === 'service-detail.html') && href === 'services.html') {
+            isActive = true;
+        } else if ((currentPage === 'projects.html' || currentPage === 'project-detail.html') && href === 'projects.html') {
+            isActive = true;
+        } else if (currentPage === 'about.html' && href === 'about.html') {
+            isActive = true;
+        } else if (currentPage === 'contact.html' && href === 'contact.html') {
             isActive = true;
         }
-        // Services pages
-        else if ((currentPage === 'services.html' || currentPage === 'service-detail.html') && href === 'services.html') {
-            isActive = true;
-        }
-        // Projects pages
-        else if ((currentPage === 'projects.html' || currentPage === 'project-detail.html') && href === 'projects.html') {
-            isActive = true;
-        }
-        // About page
-        else if (currentPage === 'about.html' && href === 'about.html') {
-            isActive = true;
-        }
-        // Contact page (not in nav but just in case)
-        else if (currentPage === 'contact.html' && href === 'contact.html') {
-            isActive = true;
-        }
-        
+
         if (isActive) {
             link.classList.add('active');
-            // Force inline styles as backup
+            // Force les styles inline pour garantir l'affichage
             link.style.setProperty('color', 'var(--brand-400)', 'important');
-            link.style.setProperty('font-weight', '600', 'important');
+            link.style.setProperty('font-weight', '700', 'important');
         }
     });
 }
 
-// Execute IMMEDIATELY - don't wait for anything
+// Un seul appel immédiat — le DOM est dispo car script en bas de body
 setActiveNavLink();
 
-// Also execute on DOMContentLoaded
-document.addEventListener('DOMContentLoaded', setActiveNavLink);
-
-// Execute again after a short delay to catch any dynamic content
-setTimeout(setActiveNavLink, 100);
-setTimeout(setActiveNavLink, 500);
-
-// Set current year in footer
+// Mise à jour de l'année dans le footer
 const yearSpan = document.getElementById('current-year');
 if (yearSpan) {
     yearSpan.textContent = new Date().getFullYear();
